@@ -1,10 +1,14 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./hero.styles.css";
-import { BRAND_GREEN, DARK_BLUE, WHITE } from "../../../constants/colors";
+import {
+	BRAND_GREEN,
+	DARK_BLUE,
+	WHITE,
+	LIGHT_GREEN,
+} from "../../../constants/colors";
 import heroImage from "../../../images/me.jpg";
 import Particles from "react-particles-js";
 import Button from "../../utils/Button/button.component";
-import { connect } from "react-redux";
 
 const particlesConfig = {
 	particles: {
@@ -32,21 +36,40 @@ const Hero = () => {
 
 			<div className='particles'>
 				<Particles
-					style={{ backgroundColor: BRAND_GREEN, height: "100%" }}
+					style={{
+						backgroundColor: BRAND_GREEN,
+					}}
 					params={particlesConfig}
 				/>
 			</div>
 
 			<div className='hero-text'>
-				<h3 style={{ color: DARK_BLUE }}>HI, I'M JOHN</h3>
-				<h1 style={{ color: WHITE }}>
-					A <span style={{ color: DARK_BLUE }}>MERN</span> STACK
-					DEVELOPER
+				<h3
+					style={{
+						color: DARK_BLUE,
+					}}
+				>
+					HI, I'M JOHN
+				</h3>
+				<h1
+					style={{
+						color: WHITE,
+					}}
+				>
+					A{" "}
+					<span
+						style={{
+							color: DARK_BLUE,
+						}}
+					>
+						MERN
+					</span>{" "}
+					STACK DEVELOPER
 				</h1>
 				<h3>
 					I TRANSFORM IDEAS INTO MODERN WEBSITES & WEB APPLICATIONS
 				</h3>
-				<Button color={BRAND_GREEN} text={"GET IN TOUCH"} />
+				<Button color={LIGHT_GREEN} text={"GET IN TOUCH"} />
 				<Button color={DARK_BLUE} text={"VIEW MY WORK"} />
 			</div>
 
@@ -59,6 +82,4 @@ const Hero = () => {
 	);
 };
 
-const mapStateToProps = ({ animatedClipPath }) => ({ animatedClipPath });
-
-export default connect(mapStateToProps, {})(Hero);
+export default Hero;

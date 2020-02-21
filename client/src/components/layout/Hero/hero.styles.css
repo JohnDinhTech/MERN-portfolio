@@ -1,20 +1,30 @@
 .hero {
-	height: 100vh;
 	position: relative;
-	overflow: hidden;
 }
 
+/***************
+    Particles 
+***************/
 .particles {
-	/* clip-path: polygon(0 0, 57% 0, 50% 100%, 0 100%); */
-	clip-path: polygon(0 0, 107% 0, 100% 100%, 0 100%);
+	clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+	animation: 1s ease-in-out 0.5s slideClipPathLeft forwards;
+	height: 100%;
 }
 
-/* Hero Text */
+@keyframes slideClipPathLeft {
+	100% {
+		clip-path: polygon(0 0, 57% 0, 50% 100%, 0 100%);
+	}
+}
 
+/***************
+    Hero Text   
+***************/
 .hero-text {
 	position: absolute;
 	top: 50%;
 	left: 7%;
+	max-width: 43vw;
 	transform: translateY(-50%);
 }
 
@@ -32,6 +42,7 @@
 
 .hero-text h3:nth-of-type(2) {
 	letter-spacing: 0.054rem;
+	line-height: 4rem;
 }
 
 .hero-text h1 {
@@ -40,15 +51,19 @@
 	margin: 0;
 }
 
-/* Hero Image */
-
+/***************
+   Hero Image 
+***************/
 .hero-image {
 	position: absolute;
 	top: 0;
 	right: 0;
+	bottom: 3px;
+	overflow: hidden;
+	left: 50%;
 	z-index: -1;
 }
 
 .hero-image img {
-	width: 50vw;
+	height: 100%;
 }

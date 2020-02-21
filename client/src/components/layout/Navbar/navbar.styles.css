@@ -7,8 +7,8 @@
 	left: 0;
 	right: 0;
 	z-index: 1;
-	animation: 1s linear fadeInFromTop forwards;
-	top: -10rem;
+	animation: 0.8s ease-in-out fadeInFromTop forwards;
+	top: -6rem;
 	opacity: 0;
 }
 
@@ -28,20 +28,21 @@
 
 .navbar ul li {
 	margin-left: 6rem;
+	transition: 0.4s all ease-in;
 }
 
 .navbar ul li a {
 	color: #f1f3ed;
-	transition: 0.4s transform ease-in;
 }
 
-.navbar ul li a:hover {
+.navbar ul li:not(:last-child):hover {
 	text-shadow: 0 0.3rem 0.6rem rgba(0, 0, 0, 0.4);
-	transform: scale(2.5);
+	transform: scale(1.2);
 }
 
-/* Logo */
-
+/***************
+      logo 
+***************/
 .logo {
 	transition: 0.5s transform ease;
 }
