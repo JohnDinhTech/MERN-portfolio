@@ -1,7 +1,7 @@
 import React from "react";
-import { WHITE } from "../../constants/colors";
+import { WHITE } from "../../../constants/colors";
 
-import "./Button.css";
+import "./button.styles.css";
 
 const Button = ({ text, color }) => (
 	<button className='btn' style={{ backgroundColor: color, color: WHITE }}>

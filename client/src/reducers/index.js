@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
+import animatedClipPath from "./animatedClipPath";
 
 export default combineReducers({
-	yeet: () => 5,
+	animatedClipPath,
 });

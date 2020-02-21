@@ -1,0 +1,1 @@
+export const ANIMATE_CLIP_PATH = "ANIMATE_CLIP_PATH";

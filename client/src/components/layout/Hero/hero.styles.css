@@ -1,0 +1,54 @@
+.hero {
+	height: 100vh;
+	position: relative;
+	overflow: hidden;
+}
+
+.particles {
+	/* clip-path: polygon(0 0, 57% 0, 50% 100%, 0 100%); */
+	clip-path: polygon(0 0, 107% 0, 100% 100%, 0 100%);
+}
+
+/* Hero Text */
+
+.hero-text {
+	position: absolute;
+	top: 50%;
+	left: 7%;
+	transform: translateY(-50%);
+}
+
+.hero-text .btn {
+	margin-right: 4.6rem;
+}
+
+.hero-text h3 {
+	letter-spacing: 0.8rem;
+	font-size: 2rem;
+	text-shadow: 0 0.3rem 0.6rem rgba(255, 255, 255, 0.171);
+	font-weight: 400;
+	margin: 3.3rem 0;
+}
+
+.hero-text h3:nth-of-type(2) {
+	letter-spacing: 0.054rem;
+}
+
+.hero-text h1 {
+	font-size: 3.6rem;
+	font-family: "League Spartan";
+	margin: 0;
+}
+
+/* Hero Image */
+
+.hero-image {
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: -1;
+}
+
+.hero-image img {
+	width: 50vw;
+}

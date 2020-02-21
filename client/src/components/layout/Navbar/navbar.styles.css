@@ -1,0 +1,55 @@
+.navbar {
+	display: flex;
+	justify-content: space-between;
+	height: 10rem;
+	align-items: center;
+	position: fixed;
+	left: 0;
+	right: 0;
+	z-index: 1;
+	animation: 1s linear fadeInFromTop forwards;
+	top: -10rem;
+	opacity: 0;
+}
+
+@keyframes fadeInFromTop {
+	100% {
+		top: 0;
+		opacity: 1;
+	}
+}
+
+.navbar ul {
+	display: flex;
+	padding: 0;
+	list-style: none;
+	align-items: center;
+}
+
+.navbar ul li {
+	margin-left: 6rem;
+}
+
+.navbar ul li a {
+	color: #f1f3ed;
+	transition: 0.4s transform ease-in;
+}
+
+.navbar ul li a:hover {
+	text-shadow: 0 0.3rem 0.6rem rgba(0, 0, 0, 0.4);
+	transform: scale(2.5);
+}
+
+/* Logo */
+
+.logo {
+	transition: 0.5s transform ease;
+}
+
+.logo h2 {
+	display: none;
+}
+
+.logo:hover {
+	transform: scale(1.2) rotate(1deg);
+}
