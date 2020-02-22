@@ -38,6 +38,14 @@
 	text-shadow: 0 0.3rem 0.6rem rgba(255, 255, 255, 0.171);
 	font-weight: 400;
 	margin: 3.3rem 0;
+	margin-left: -16rem;
+	animation: 3s moveBackToCenter forwards;
+}
+
+@keyframes moveBackToCenter {
+	100% {
+		margin-left: 0;
+	}
 }
 
 .hero-text h3:nth-of-type(2) {
@@ -48,7 +56,26 @@
 .hero-text h1 {
 	font-size: 3.6rem;
 	font-family: "League Spartan";
-	margin: 0;
+	margin-left: -50rem;
+	letter-spacing: 0.4rem;
+	animation: 2s animateInFromLeft forwards;
+}
+
+.mern_text {
+	opacity: 0;
+	animation: fadeIn 3s ease 2s forwards;
+}
+
+@keyframes fadeIn {
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes animateInFromLeft {
+	100% {
+		margin-left: 0rem;
+	}
 }
 
 /***************
@@ -66,4 +93,51 @@
 
 .hero-image img {
 	height: 100%;
+}
+
+/***************
+   Mobile Hero
+***************/
+
+.hero-mobile {
+	height: 32.1rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.mobile-hero-image {
+	border-radius: 50%;
+	height: 5.8rem;
+	width: 5.8rem;
+	margin: 0 auto;
+}
+
+.hero-text-mobile {
+	text-align: center;
+}
+
+.hero-text-mobile .btn {
+	margin-right: 4.6rem;
+}
+
+.hero-text-mobile h3 {
+	letter-spacing: 0.31rem;
+	font-size: 2rem;
+	text-shadow: 0 0.3rem 0.6rem rgba(204, 204, 204, 0.288);
+	font-weight: 400;
+}
+
+.hero-text-mobile h3:nth-of-type(2) {
+	letter-spacing: 0.054rem;
+	line-height: 4rem;
+	font-size: 1.4rem;
+}
+
+.hero-text-mobile h1 {
+	font-size: 3.6rem;
+	font-family: "League Spartan";
+	letter-spacing: 0.5rem;
+	max-width: 31.2rem;
+	margin: 0 auto;
 }

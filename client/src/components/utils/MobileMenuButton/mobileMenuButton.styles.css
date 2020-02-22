@@ -1,0 +1,32 @@
+.mobile-menu-button {
+	position: absolute;
+	height: 8rem;
+	width: 8rem;
+	bottom: 5rem;
+	left: 5rem;
+	border-radius: 50%;
+	box-shadow: 0 0.3rem 0.6rem rgba(0, 0, 0, 0.16);
+	transition: 1s all ease;
+	outline: none;
+	border: none;
+	z-index: 99;
+}
+
+.mobile-menu-button:hover {
+	box-shadow: 0 0.4rem 0.6rem rgba(0, 0, 0, 0.5);
+	/* transform: rotate(180deg); */
+}
+
+.mobile-menu-button .cross .line {
+	height: 0.5rem;
+	width: 4rem;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.mobile-menu-button .cross .line:nth-of-type(2) {
+	transform-origin: 0% 0%;
+	transform: rotate(90deg) translate(-50%, -50%);
+}
