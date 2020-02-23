@@ -89,7 +89,14 @@ const Portfolio = ({
 					>
 						Search by skills used
 					</label>
-					<InputBar type='search' placeholder='Example: JavaScript' />
+					<InputBar
+						style={{
+							boxShadow: "0 3px 6px rgba(0, 0, 0, 0.5)",
+						}}
+						type='search'
+						placeholder='Example: JavaScript'
+						width='41.4rem'
+					/>
 					<SpringGrid
 						component='div'
 						columns={tablet ? 2 : 4}
@@ -101,6 +108,7 @@ const Portfolio = ({
 						style={{
 							margin: "0 auto",
 							marginTop: "3.6rem",
+							zIndex: "0",
 						}}
 					>
 						{projectData

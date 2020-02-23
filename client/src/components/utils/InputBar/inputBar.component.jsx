@@ -1,18 +1,21 @@
 import React from "react";
 
-const InputBar = ({ type, placeholder }) => {
+const InputBar = ({ style, type, placeholder, name, required, width }) => {
 	return (
 		<input
 			style={{
+				...style,
 				padding: "1.6rem 2.5rem",
-				width: "41.4rem",
+				width: width,
 				borderRadius: "0.5rem",
 				border: "none",
-				boxShadow: "0 3px 6px rgba(0, 0, 0, 0.5)",
 				fontSize: "2rem",
+				outline: "none",
 			}}
 			type={type}
 			placeholder={placeholder}
+			name={name}
+			required={required}
 		/>
 	);
 };
