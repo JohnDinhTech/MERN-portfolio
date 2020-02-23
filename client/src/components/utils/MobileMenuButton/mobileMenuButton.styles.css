@@ -1,5 +1,5 @@
 .mobile-menu-button {
-	position: absolute;
+	position: fixed;
 	height: 8rem;
 	width: 8rem;
 	bottom: 5rem;

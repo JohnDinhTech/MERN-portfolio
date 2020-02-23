@@ -16,6 +16,7 @@ import { Particles } from "react-particles-js";
 
 const Navbar = ({ mediaType, mobileMenu }) => {
 	switch (mediaType) {
+		case "smallTablet":
 		case "mobile":
 			return (
 				<Fragment>

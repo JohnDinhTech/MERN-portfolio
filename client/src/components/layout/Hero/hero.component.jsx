@@ -14,11 +14,16 @@ import { connect } from "react-redux";
 
 const Hero = ({ mediaType }) => {
 	switch (mediaType) {
+		case "smallTablet":
 		case "mobile":
 			return (
 				<section
 					className='hero-mobile container'
-					style={{ backgroundColor: DARK_BLUE }}
+					style={{
+						backgroundColor: DARK_BLUE,
+						padding: "4rem 2rem",
+						height: "100%",
+					}}
 				>
 					<img
 						className='mobile-hero-image'
@@ -44,6 +49,8 @@ const Hero = ({ mediaType }) => {
 								className='mern_text'
 								style={{
 									color: BRAND_BLUE,
+									opacity: 1,
+									animation: "none",
 								}}
 							>
 								MERN
