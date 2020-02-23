@@ -6,13 +6,13 @@ import {
 	ButtonBack,
 	ButtonNext,
 } from "pure-react-carousel";
-import Card from "../utils/Card/card.component";
+import Card from "../Card/card.component";
 import "pure-react-carousel/dist/react-carousel.es.css";
-import "./skillsSlider.styles.css";
+// import "./skillsSlider.styles.css";
 
-import designIcon from "../../images/icons/design.png";
-import developmentIcon from "../../images/icons/development.png";
-import globeIcon from "../../images/icons/globe.png";
+import designIcon from "../../../images/icons/design.png";
+import developmentIcon from "../../../images/icons/development.png";
+import globeIcon from "../../../images/icons/globe.png";
 
 const slidersText = [
 	{

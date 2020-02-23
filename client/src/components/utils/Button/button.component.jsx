@@ -3,10 +3,10 @@ import { WHITE } from "../../../constants/colors";
 
 import "./button.styles.css";
 
-const Button = ({ text, color, fontWeight }) => (
+const Button = ({ text, color, fontWeight, style }) => (
 	<button
 		className='btn'
-		style={{ backgroundColor: color, color: WHITE, fontWeight }}
+		style={{ ...style, fontWeight, backgroundColor: color, color: WHITE }}
 	>
 		{text}
 	</button>

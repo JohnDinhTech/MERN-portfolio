@@ -16,6 +16,7 @@ const Hero = ({ mediaType }) => {
 	switch (mediaType) {
 		case "smallTablet":
 		case "mobile":
+		case "smallMobile":
 			return (
 				<section
 					className='hero-mobile container'

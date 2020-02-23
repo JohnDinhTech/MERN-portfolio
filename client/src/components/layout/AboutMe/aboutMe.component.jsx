@@ -2,7 +2,7 @@ import React from "react";
 import aboutImage from "../../../images/me2.png";
 import "./aboutMe.styles.css";
 import { WHITE, LIGHT_GREEN } from "../../../constants/colors";
-import SkillsSlider from "../../SkillsSlider/skillsSlider.compontent";
+import SkillsSlider from "../../utils/SkillsSlider/skillsSlider.compontent";
 import { connect } from "react-redux";
 const AboutMe = ({ mediaType }) => {
 	switch (mediaType) {
@@ -156,6 +156,7 @@ const AboutMe = ({ mediaType }) => {
 				</section>
 			);
 		case "mobile":
+		case "smallMobile":
 			return (
 				<section
 					className='about-me about-me-desktop small-tablet'

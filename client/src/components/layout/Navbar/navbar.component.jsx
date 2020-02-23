@@ -18,6 +18,7 @@ const Navbar = ({ mediaType, mobileMenu }) => {
 	switch (mediaType) {
 		case "smallTablet":
 		case "mobile":
+		case "smallMobile":
 			return (
 				<Fragment>
 					<nav

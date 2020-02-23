@@ -1,0 +1,13 @@
+.project-card-container:hover {
+	transform: scale(1.2);
+}
+
+.project-card-text h1 {
+	margin: 0;
+	font-size: 1.6rem;
+}
+
+.project-card-text p {
+	margin: 0;
+	font-size: 1rem;
+}
