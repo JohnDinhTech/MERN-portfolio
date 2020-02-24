@@ -2,7 +2,7 @@ import React from "react";
 import "./mobileMenuButton.styles.css";
 import { connect } from "react-redux";
 import { toggleMobileMenu } from "../../../actions";
-import { DARK_BLUE, WHITE } from "../../../constants/colors";
+import { DARK_BLUE, WHITE, BRAND_BLUE } from "../../../constants/colors";
 const MobileMenuButton = ({ toggleMobileMenu, menuState }) => {
 	return (
 		<div
@@ -10,13 +10,13 @@ const MobileMenuButton = ({ toggleMobileMenu, menuState }) => {
 				toggleMobileMenu();
 			}}
 			style={{
-				backgroundColor: menuState ? WHITE : DARK_BLUE,
+				backgroundColor: menuState ? WHITE : BRAND_BLUE,
 			}}
 			className='mobile-menu-button'
 		>
 			<div className='cross'>
 				<div
-					style={{ backgroundColor: menuState ? DARK_BLUE : WHITE }}
+					style={{ backgroundColor: menuState ? BRAND_BLUE : WHITE }}
 					className='line'
 				></div>
 				<div

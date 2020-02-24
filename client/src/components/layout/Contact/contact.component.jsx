@@ -24,7 +24,7 @@ const Contact = ({
 			style={{
 				padding: smallTablet ? "0 5%" : "0 14% 15rem 14%",
 				backgroundColor: smallTablet ? BRAND_BLUE : WHITE,
-				height: "100rem",
+				height: smallTablet ? "100rem" : "auto",
 			}}
 		>
 			<h1
@@ -98,7 +98,7 @@ const Contact = ({
 									color: WHITE,
 									textAlign: "center",
 									marginTop: "8rem",
-									transform: "translateX(-1rem)",
+									transform: "translateX(-3rem)",
 								}}
 							>
 								<p style={{ margin: "0" }}>
