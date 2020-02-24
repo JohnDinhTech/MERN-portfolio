@@ -9,10 +9,11 @@ import {
 import heroImage from "../../../images/me.jpg";
 import Particles from "react-particles-js";
 import Button from "../../utils/Button/button.component";
+import { loadImage } from "../../../actions";
 import { particlesConfig } from "../../../particlesConfig";
 import { connect } from "react-redux";
 
-const Hero = ({ mediaType }) => {
+const Hero = ({ mediaType, loadImage }) => {
 	switch (mediaType) {
 		case "smallTablet":
 		case "mobile":
@@ -114,7 +115,11 @@ const Hero = ({ mediaType }) => {
 					{/* Right Side of Hero Section */}
 					<div className='hero-image'>
 						<div className='overlay'></div>
-						<img src={heroImage} alt='John Dinh eating sushi' />
+						<img
+							src={heroImage}
+							alt='John Dinh eating sushi'
+							onLoad={loadImage}
+						/>
 					</div>
 				</section>
 			);
@@ -125,4 +130,6 @@ const mapStateToProps = ({ browser }) => ({
 	...browser,
 });
 
-export default connect(mapStateToProps)(Hero);
+export default connect(mapStateToProps, {
+	loadImage,
+})(Hero);

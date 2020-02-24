@@ -10,6 +10,11 @@
 	animation: 0.8s ease-in-out fadeInFromTop forwards;
 	top: -6rem;
 	opacity: 0;
+	transition: background-color 1s ease;
+}
+
+.navbar-with-background {
+	background-color: rgba(17, 209, 216, 0.938);
 }
 
 @keyframes fadeInFromTop {

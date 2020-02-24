@@ -7,7 +7,8 @@
 	margin-bottom: 1rem;
 }
 
-.footer ul li a:visited {
+.footer ul li a:visited,
+.footer ul li a {
 	color: #f1f3ed;
 }
 

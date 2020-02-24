@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import Button from "../../utils/Button/button.component";
 import {
 	LIGHT_GREEN,
@@ -13,8 +13,15 @@ import { connect } from "react-redux";
 import MobileMenuButton from "../../utils/MobileMenuButton/mobileMenuButton";
 import { particlesConfig } from "../../../particlesConfig";
 import { Particles } from "react-particles-js";
+import { setScrollY } from "../../../actions";
 
-const Navbar = ({ mediaType, mobileMenu }) => {
+const Navbar = ({ mediaType, mobileMenu, setScrollY, scrollY }) => {
+	useEffect(() => {
+		window.addEventListener("scroll", () => {
+			setScrollY(window.pageYOffset);
+		});
+	}, []);
+
 	switch (mediaType) {
 		case "smallTablet":
 		case "mobile":
@@ -102,7 +109,11 @@ const Navbar = ({ mediaType, mobileMenu }) => {
 			);
 		default:
 			return (
-				<nav className='navbar container'>
+				<nav
+					className={`navbar container ${
+						scrollY === 0 ? "" : "navbar-with-background"
+					}`}
+				>
 					<Link to='/' className='logo'>
 						<h2>John Dinh</h2>
 						<img src={logo} alt="John Dinh's Signiture" />
@@ -123,9 +134,12 @@ const Navbar = ({ mediaType, mobileMenu }) => {
 	}
 };
 
-const mapStateToProps = ({ browser, mobileMenu }) => ({
+const mapStateToProps = ({ browser, mobileMenu, scrollY }) => ({
 	...browser,
 	mobileMenu,
+	scrollY,
 });
 
-export default connect(mapStateToProps, {})(Navbar);
+export default connect(mapStateToProps, {
+	setScrollY,
+})(Navbar);
