@@ -6,9 +6,11 @@ import {
 	BRAND_BLUE,
 	DARK_GREEN,
 } from "../../../constants/colors";
+import * as Scroll from "react-scroll";
+import { Link, animateScroll as scroll } from "react-scroll";
+
 import logo from "../../../images/signiture.png";
 import "./navbar.styles.css";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import MobileMenuButton from "../../utils/MobileMenuButton/mobileMenuButton";
 import { particlesConfig } from "../../../particlesConfig";
@@ -43,23 +45,42 @@ const Navbar = ({ mediaType, mobileMenu, setScrollY, scrollY }) => {
 							}}
 							params={particlesConfig}
 						/>
-						<Link to='/' className='logo'>
+						<Link
+							to='hero-mobile'
+							className='logo'
+							smooth={true}
+							duration={500}
+						>
 							<h2>John Dinh</h2>
 							<img src={logo} alt="John Dinh's Signiture" />
 						</Link>
 						<ul>
 							<li>
-								<Link to='/'>ABOUT</Link>
+								<Link
+									to='about-me'
+									smooth={true}
+									duration={500}
+								>
+									ABOUT
+								</Link>
 							</li>
 							<li>
-								<Link to='/'>PORTFOLIO</Link>
+								<Link
+									to='portfolio'
+									smooth={true}
+									duration={500}
+								>
+									PORTFOLIO
+								</Link>
 							</li>
 							<li>
-								<Button
-									color={BRAND_BLUE}
-									text='GET IN TOUCH'
-									fontWeight='800'
-								/>
+								<Link to='contact' smooth={true} duration={500}>
+									<Button
+										color={BRAND_BLUE}
+										text='GET IN TOUCH'
+										fontWeight='800'
+									/>
+								</Link>
 							</li>
 						</ul>
 					</nav>
@@ -84,23 +105,43 @@ const Navbar = ({ mediaType, mobileMenu, setScrollY, scrollY }) => {
 							}}
 							params={particlesConfig}
 						/>
-						<Link to='/' className='logo'>
+						<Link
+							to='hero'
+							className='logo'
+							smooth={true}
+							duration={500}
+							className='logo'
+						>
 							<h2>John Dinh</h2>
 							<img src={logo} alt="John Dinh's Signiture" />
 						</Link>
 						<ul>
 							<li>
-								<Link to='/'>ABOUT</Link>
+								<Link
+									to='about-me'
+									smooth={true}
+									duration={500}
+								>
+									ABOUT
+								</Link>
 							</li>
 							<li>
-								<Link to='/'>PORTFOLIO</Link>
+								<Link
+									to='portfolio'
+									smooth={true}
+									duration={500}
+								>
+									PORTFOLIO
+								</Link>
 							</li>
 							<li>
-								<Button
-									color={BRAND_BLUE}
-									text='GET IN TOUCH'
-									fontWeight='800'
-								/>
+								<Link to='contact' smooth={true} duration={500}>
+									<Button
+										color={BRAND_BLUE}
+										text='GET IN TOUCH'
+										fontWeight='800'
+									/>
+								</Link>
 							</li>
 						</ul>
 					</nav>
@@ -114,19 +155,48 @@ const Navbar = ({ mediaType, mobileMenu, setScrollY, scrollY }) => {
 						scrollY === 0 ? "" : "navbar-with-background"
 					}`}
 				>
-					<Link to='/' className='logo'>
+					<Link
+						to='hero'
+						className='logo'
+						smooth={true}
+						duration={500}
+					>
 						<h2>John Dinh</h2>
 						<img src={logo} alt="John Dinh's Signiture" />
 					</Link>
 					<ul>
 						<li>
-							<Link to='/'>ABOUT</Link>
+							<Link
+								to='about-me'
+								smooth={true}
+								duration={500}
+								offset={-98}
+							>
+								ABOUT
+							</Link>
 						</li>
 						<li>
-							<Link to='/'>PORTFOLIO</Link>
+							<Link
+								to='portfolio'
+								smooth={true}
+								duration={500}
+								offset={-100}
+							>
+								PORTFOLIO
+							</Link>
 						</li>
 						<li>
-							<Button color={LIGHT_GREEN} text='GET IN TOUCH' />
+							<Link
+								to='contact'
+								smooth={true}
+								duration={500}
+								offset={-98}
+							>
+								<Button
+									color={LIGHT_GREEN}
+									text='GET IN TOUCH'
+								/>
+							</Link>
 						</li>
 					</ul>
 				</nav>

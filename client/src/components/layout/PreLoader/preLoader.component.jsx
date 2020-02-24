@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 
 import "./preLoader.styles.css";
 
-const PreLoader = ({ heroImageLoaded, desktop }) => {
-	if (!desktop) {
+const PreLoader = ({ heroImageLoaded, tablet }) => {
+	if (tablet) {
 		return (
 			<div className={`preloader preloader-${heroImageLoaded}`}>
 				<h1>Loading...</h1>
@@ -30,7 +30,7 @@ const PreLoader = ({ heroImageLoaded, desktop }) => {
 
 const mapStateToProps = ({ heroImageLoaded, browser }) => ({
 	heroImageLoaded,
-	...browser,
+	...browser.greaterThan,
 });
 
 export default connect(mapStateToProps)(PreLoader);

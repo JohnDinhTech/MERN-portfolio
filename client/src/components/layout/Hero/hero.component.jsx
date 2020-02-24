@@ -6,6 +6,8 @@ import {
 	WHITE,
 	LIGHT_GREEN,
 } from "../../../constants/colors";
+import * as Scroll from "react-scroll";
+import { Link, animateScroll as scroll } from "react-scroll";
 import heroImage from "../../../images/me.jpg";
 import Particles from "react-particles-js";
 import Button from "../../utils/Button/button.component";
@@ -108,8 +110,22 @@ const Hero = ({ mediaType, loadImage }) => {
 							I TRANSFORM IDEAS INTO MODERN WEBSITES & WEB
 							APPLICATIONS
 						</h3>
-						<Button color={LIGHT_GREEN} text={"GET IN TOUCH"} />
-						<Button color={DARK_BLUE} text={"VIEW MY WORK"} />
+						<Link
+							to='contact'
+							smooth={true}
+							duration={500}
+							offset={mediaType === "tablet" ? 0 : -100}
+						>
+							<Button color={LIGHT_GREEN} text={"GET IN TOUCH"} />
+						</Link>
+						<Link
+							to='portfolio'
+							smooth={true}
+							duration={500}
+							offset={mediaType === "tablet" ? 0 : -100}
+						>
+							<Button color={DARK_BLUE} text={"VIEW MY WORK"} />
+						</Link>
 					</div>
 
 					{/* Right Side of Hero Section */}

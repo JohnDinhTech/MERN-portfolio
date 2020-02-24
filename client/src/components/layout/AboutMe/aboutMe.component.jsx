@@ -19,7 +19,11 @@ const AboutMe = ({ mediaType }) => {
 						style={{ backgroundColor: WHITE }}
 					>
 						<h1>ABOUT ME</h1>
-						<p>
+						<p
+							style={{
+								fontSize: "2rem",
+							}}
+						>
 							I create simple to complex websites from concept to
 							deployment. Delivering positive UX through websites
 							has always been a passion of mine. Whether I'm
@@ -49,10 +53,16 @@ const AboutMe = ({ mediaType }) => {
 
 						<div
 							className='about-me-text'
-							style={{ backgroundColor: WHITE }}
+							style={{
+								backgroundColor: WHITE,
+							}}
 						>
 							<h1>ABOUT ME</h1>
-							<p>
+							<p
+								style={{
+									fontSize: "2rem",
+								}}
+							>
 								I create simple to complex websites from concept
 								to deployment. Delivering positive UX through
 								websites has always been a passion of mine.
