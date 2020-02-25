@@ -1,23 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { DARK_BLUE, WHITE, BRAND_BLUE } from "../../../constants/colors";
 import logo from "../../../images/signiture.png";
 import { connect } from "react-redux";
+import { changeNavColor } from "../../../actions";
 
 import "./footer.styles.css";
 
-const Footer = ({
-	smallMobile,
-	mobile,
-	smallTablet,
-	tablet,
-	desktop,
-	infinity,
-	style,
-}) => {
+const Footer = ({ smallTablet, style, navColors, changeNavColor }) => {
+	useEffect(() => {
+		changeNavColor(navColors.footerColor);
+	}, []);
+	const { footerColor, footerTextColor } = navColors;
 	return (
 		<footer
 			style={{
-				backgroundColor: DARK_BLUE,
+				backgroundColor: footerColor,
 				color: WHITE,
 				padding: "5.1rem 7%",
 				position: "relative",
@@ -42,7 +39,7 @@ const Footer = ({
 					<img src={logo} alt="John Dinh's signiture" />
 					<p
 						style={{
-							color: BRAND_BLUE,
+							color: footerTextColor,
 							fontSize: "1.6rem",
 							margin: 0,
 						}}
@@ -56,7 +53,7 @@ const Footer = ({
 					<img src={logo} alt="John Dinh's signiture" />
 					<p
 						style={{
-							color: BRAND_BLUE,
+							color: footerTextColor,
 							fontSize: "1.6rem",
 							margin: 0,
 						}}
@@ -99,6 +96,11 @@ const Footer = ({
 	);
 };
 
-const mapStateToProps = ({ browser }) => ({ ...browser.lessThan });
+const mapStateToProps = ({ browser, navColors }) => ({
+	...browser.lessThan,
+	navColors,
+});
 
-export default connect(mapStateToProps)(Footer);
+export default connect(mapStateToProps, {
+	changeNavColor,
+})(Footer);

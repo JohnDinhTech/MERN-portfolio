@@ -9,9 +9,18 @@ import { connect } from "react-redux";
 import MobileMenuButton from "../../utils/MobileMenuButton/mobileMenuButton";
 import { particlesConfig } from "../../../particlesConfig";
 import { Particles } from "react-particles-js";
-import { setScrollY } from "../../../actions";
+import { setScrollY, changeNavColor } from "../../../actions";
+import { CHANGE_NAV_BACKGROUND } from "../../../actions/types";
 
-const Navbar = ({ mediaType, mobileMenu, setScrollY, scrollY, style }) => {
+const Navbar = ({
+	mediaType,
+	mobileMenu,
+	setScrollY,
+	scrollY,
+	style,
+	changeNavColor,
+	navColors,
+}) => {
 	useEffect(() => {
 		window.addEventListener("scroll", () => {
 			setScrollY(window.pageYOffset);
@@ -25,7 +34,11 @@ const Navbar = ({ mediaType, mobileMenu, setScrollY, scrollY, style }) => {
 			return (
 				<Fragment>
 					<nav
-						style={{ backgroundColor: DARK_BLUE, ...style }}
+						style={{
+							backgroundColor: DARK_BLUE,
+							position: navColors.navPosition,
+							...style,
+						}}
 						className={`navbar navbar-mobile ${
 							mobileMenu
 								? "navbar-mobile-open"
@@ -43,6 +56,7 @@ const Navbar = ({ mediaType, mobileMenu, setScrollY, scrollY, style }) => {
 							to='/'
 							onClick={() => {
 								scroll.scrollToTop();
+								changeNavColor(DARK_BLUE);
 							}}
 							className='logo'
 						>
@@ -87,7 +101,11 @@ const Navbar = ({ mediaType, mobileMenu, setScrollY, scrollY, style }) => {
 			return (
 				<Fragment>
 					<nav
-						style={{ backgroundColor: DARK_BLUE, ...style }}
+						style={{
+							backgroundColor: DARK_BLUE,
+							position: navColors.navPosition,
+							...style,
+						}}
 						className={`navbar navbar-tablet ${
 							mobileMenu
 								? "navbar-tablet-open"
@@ -105,6 +123,7 @@ const Navbar = ({ mediaType, mobileMenu, setScrollY, scrollY, style }) => {
 							to='/'
 							onClick={() => {
 								scroll.scrollToTop();
+								changeNavColor(DARK_BLUE);
 							}}
 							className='logo'
 						>
@@ -134,7 +153,7 @@ const Navbar = ({ mediaType, mobileMenu, setScrollY, scrollY, style }) => {
 							<li>
 								<Link to='contact' smooth={true} duration={500}>
 									<Button
-										color={BRAND_BLUE}
+										color={DARK_BLUE}
 										text='GET IN TOUCH'
 										fontWeight='800'
 									/>
@@ -148,10 +167,11 @@ const Navbar = ({ mediaType, mobileMenu, setScrollY, scrollY, style }) => {
 		default:
 			return (
 				<nav
-					className={`navbar container ${
-						scrollY === 0 ? "" : "navbar-with-background"
-					}`}
+					className='navbar container'
 					style={{
+						backgroundColor:
+							scrollY === 0 ? navColors.navColor : BRAND_BLUE,
+						position: navColors.navPosition,
 						...style,
 					}}
 				>
@@ -159,6 +179,7 @@ const Navbar = ({ mediaType, mobileMenu, setScrollY, scrollY, style }) => {
 						to='/'
 						onClick={() => {
 							scroll.scrollToTop();
+							changeNavColor(DARK_BLUE);
 						}}
 						className='logo'
 					>
@@ -208,12 +229,14 @@ const Navbar = ({ mediaType, mobileMenu, setScrollY, scrollY, style }) => {
 	}
 };
 
-const mapStateToProps = ({ browser, mobileMenu, scrollY }) => ({
+const mapStateToProps = ({ browser, mobileMenu, scrollY, navColors }) => ({
 	...browser,
 	mobileMenu,
 	scrollY,
+	navColors,
 });
 
 export default connect(mapStateToProps, {
 	setScrollY,
+	changeNavColor,
 })(Navbar);

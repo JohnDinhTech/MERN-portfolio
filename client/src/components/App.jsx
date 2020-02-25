@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "./layout/Navbar/navbar.component";
 import Hero from "./layout/Hero/hero.component";
 import AboutMe from "./layout/AboutMe/aboutMe.component";
@@ -9,39 +9,34 @@ import Preloader from "./layout/PreLoader/preLoader.component";
 import Login from "./auth/Login.component";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { BRAND_BLUE } from "../constants/colors";
+
 import "./App.css";
+import Routes from "./routing/Routes/routes.component";
+import setAuthToken from "../utils/setAuthToken";
+import { loadUser } from "../actions";
+import store from "../store";
 const App = () => {
+	useEffect(() => {
+		if (localStorage.token) {
+			setAuthToken(localStorage.token);
+			store.dispatch(loadUser());
+		}
+	}, []);
 	return (
 		<Router>
+			<Navbar />
 			<Route exact path='/'>
-				<Navbar />
 				<Preloader />
 				<Hero />
 				<AboutMe />
 				<Portfolio />
 				<Contact />
-				<Footer />
 			</Route>
 			<Route exact path='/login'>
-				<Navbar
-					style={{
-						backgroundColor: BRAND_BLUE,
-						position: "relative",
-					}}
-				/>
-
 				<Login />
-				<Footer
-					style={{
-						backgroundColor: BRAND_BLUE,
-					}}
-				/>
 			</Route>
-			<Route exact path='/dashboard'>
-				<div>
-					<h1>Welcome to my humble space</h1>
-				</div>
-			</Route>
+			<Route component={Routes} />
+			<Footer />
 		</Router>
 	);
 };

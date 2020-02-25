@@ -6,6 +6,7 @@ const bcrypt = require("bcryptjs");
 const { check, validationResult } = require("express-validator");
 
 const User = require("../../models/User");
+
 // @route   GET api/auth
 // @desc    Get Logged In User
 // @access  Private

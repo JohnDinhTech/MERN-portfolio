@@ -1,11 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import Button from "../utils/Button/button.component";
 import InputBar from "../utils/InputBar/inputBar.component";
 import { BRAND_BLUE, WHITE, DARK_BLUE } from "../../constants/colors";
-// import { Redirect } from "react-router-dom"
-import axios from "axios";
-const Login = ({ mobile, desktop }) => {
+import { Redirect } from "react-router-dom";
+import { login, changeNavColor } from "../../actions";
+import { CHANGE_NAV_POSITION } from "../../actions/types";
+const Login = ({
+	mobile,
+	desktop,
+	login,
+	isAuthenticated,
+	changeNavColor,
+	token,
+}) => {
+	useEffect(() => {
+		changeNavColor(BRAND_BLUE);
+	}, []);
 	const [formData, setaFormData] = useState({
 		email: "",
 		password: "",
@@ -19,24 +30,16 @@ const Login = ({ mobile, desktop }) => {
 
 	const handleLogin = async (e) => {
 		e.preventDefault();
-		localStorage.setItem("token", null);
-
-		try {
-			const res = await axios.post("api/auth", {
-				email,
-				password,
-			});
-			const token = res.data.token;
-
-			if (token) {
-				console.log("login success");
-				localStorage.setItem("token", token);
-				axios.get("/dashboard");
-			}
-		} catch (error) {
-			console.log(error.message);
-		}
+		login(email, password);
 	};
+
+	if (isAuthenticated) {
+		// changeNavColor(DARK_BLUE);
+		changeNavColor(CHANGE_NAV_POSITION, { position: "relative" });
+		localStorage.setItem("token", token);
+		return <Redirect to='/dashboard' />;
+	}
+
 	return (
 		<div
 			style={{
@@ -98,6 +101,12 @@ const Login = ({ mobile, desktop }) => {
 	);
 };
 
-const mapStateToProps = ({ browser }) => ({ ...browser.lessThan });
+const mapStateToProps = ({ browser, auth }) => ({
+	...browser.lessThan,
+	...auth,
+});
 
-export default connect(mapStateToProps)(Login);
+export default connect(mapStateToProps, {
+	login,
+	changeNavColor,
+})(Login);
