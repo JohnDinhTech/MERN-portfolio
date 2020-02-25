@@ -34,11 +34,13 @@ const App = () => {
 				<Footer
 					style={{
 						backgroundColor: BRAND_BLUE,
-						// position: "absolute",
-						// bottom: 0,
-						// width: "100%",
 					}}
 				/>
+			</Route>
+			<Route exact path='/dashboard'>
+				<div>
+					<h1>Welcome to my humble space</h1>
+				</div>
 			</Route>
 		</Router>
 	);

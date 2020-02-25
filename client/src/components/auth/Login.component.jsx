@@ -1,9 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import Button from "../utils/Button/button.component";
 import InputBar from "../utils/InputBar/inputBar.component";
 import { BRAND_BLUE, WHITE, DARK_BLUE } from "../../constants/colors";
+// import { Redirect } from "react-router-dom"
+import axios from "axios";
 const Login = ({ mobile, desktop }) => {
+	const [formData, setaFormData] = useState({
+		email: "",
+		password: "",
+	});
+
+	const { email, password } = formData;
+
+	const onChange = (e) => {
+		setaFormData({ ...formData, [e.target.name]: e.target.value });
+	};
+
+	const handleLogin = async (e) => {
+		e.preventDefault();
+		localStorage.setItem("token", null);
+
+		try {
+			const res = await axios.post("api/auth", {
+				email,
+				password,
+			});
+			const token = res.data.token;
+
+			if (token) {
+				console.log("login success");
+				localStorage.setItem("token", token);
+				axios.get("/dashboard");
+			}
+		} catch (error) {
+			console.log(error.message);
+		}
+	};
 	return (
 		<div
 			style={{
@@ -24,7 +57,8 @@ const Login = ({ mobile, desktop }) => {
 				Dev Login
 			</h1>
 
-			<div
+			<form
+				onSubmit={handleLogin}
 				className='contact-info'
 				style={{
 					width: desktop ? "30%" : "25%",
@@ -37,6 +71,7 @@ const Login = ({ mobile, desktop }) => {
 						type='email'
 						name='email'
 						required={true}
+						onChange={onChange}
 					/>
 				</label>
 				<label>
@@ -46,6 +81,7 @@ const Login = ({ mobile, desktop }) => {
 						name='password'
 						required={true}
 						placeholder='Password'
+						onChange={onChange}
 					/>
 				</label>
 				<Button
@@ -57,7 +93,7 @@ const Login = ({ mobile, desktop }) => {
 						display: "block",
 					}}
 				/>
-			</div>
+			</form>
 		</div>
 	);
 };
