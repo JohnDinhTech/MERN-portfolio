@@ -1,14 +1,8 @@
 import React, { Fragment, useEffect } from "react";
 import Button from "../../utils/Button/button.component";
-import {
-	LIGHT_GREEN,
-	DARK_BLUE,
-	BRAND_BLUE,
-	DARK_GREEN,
-} from "../../../constants/colors";
-import * as Scroll from "react-scroll";
+import { LIGHT_GREEN, DARK_BLUE, BRAND_BLUE } from "../../../constants/colors";
 import { Link, animateScroll as scroll } from "react-scroll";
-
+import { Link as RouterLink } from "react-router-dom";
 import logo from "../../../images/signiture.png";
 import "./navbar.styles.css";
 import { connect } from "react-redux";
@@ -17,7 +11,7 @@ import { particlesConfig } from "../../../particlesConfig";
 import { Particles } from "react-particles-js";
 import { setScrollY } from "../../../actions";
 
-const Navbar = ({ mediaType, mobileMenu, setScrollY, scrollY }) => {
+const Navbar = ({ mediaType, mobileMenu, setScrollY, scrollY, style }) => {
 	useEffect(() => {
 		window.addEventListener("scroll", () => {
 			setScrollY(window.pageYOffset);
@@ -31,7 +25,7 @@ const Navbar = ({ mediaType, mobileMenu, setScrollY, scrollY }) => {
 			return (
 				<Fragment>
 					<nav
-						style={{ backgroundColor: DARK_BLUE }}
+						style={{ backgroundColor: DARK_BLUE, ...style }}
 						className={`navbar navbar-mobile ${
 							mobileMenu
 								? "navbar-mobile-open"
@@ -45,15 +39,16 @@ const Navbar = ({ mediaType, mobileMenu, setScrollY, scrollY }) => {
 							}}
 							params={particlesConfig}
 						/>
-						<Link
-							to='hero-mobile'
+						<RouterLink
+							to='/'
+							onClick={() => {
+								scroll.scrollToTop();
+							}}
 							className='logo'
-							smooth={true}
-							duration={500}
 						>
 							<h2>John Dinh</h2>
 							<img src={logo} alt="John Dinh's Signiture" />
-						</Link>
+						</RouterLink>
 						<ul>
 							<li>
 								<Link
@@ -73,6 +68,7 @@ const Navbar = ({ mediaType, mobileMenu, setScrollY, scrollY }) => {
 									PORTFOLIO
 								</Link>
 							</li>
+
 							<li>
 								<Link to='contact' smooth={true} duration={500}>
 									<Button
@@ -91,7 +87,7 @@ const Navbar = ({ mediaType, mobileMenu, setScrollY, scrollY }) => {
 			return (
 				<Fragment>
 					<nav
-						style={{ backgroundColor: DARK_BLUE }}
+						style={{ backgroundColor: DARK_BLUE, ...style }}
 						className={`navbar navbar-tablet ${
 							mobileMenu
 								? "navbar-tablet-open"
@@ -105,16 +101,16 @@ const Navbar = ({ mediaType, mobileMenu, setScrollY, scrollY }) => {
 							}}
 							params={particlesConfig}
 						/>
-						<Link
-							to='hero'
-							className='logo'
-							smooth={true}
-							duration={500}
+						<RouterLink
+							to='/'
+							onClick={() => {
+								scroll.scrollToTop();
+							}}
 							className='logo'
 						>
 							<h2>John Dinh</h2>
 							<img src={logo} alt="John Dinh's Signiture" />
-						</Link>
+						</RouterLink>
 						<ul>
 							<li>
 								<Link
@@ -134,6 +130,7 @@ const Navbar = ({ mediaType, mobileMenu, setScrollY, scrollY }) => {
 									PORTFOLIO
 								</Link>
 							</li>
+
 							<li>
 								<Link to='contact' smooth={true} duration={500}>
 									<Button
@@ -154,16 +151,20 @@ const Navbar = ({ mediaType, mobileMenu, setScrollY, scrollY }) => {
 					className={`navbar container ${
 						scrollY === 0 ? "" : "navbar-with-background"
 					}`}
+					style={{
+						...style,
+					}}
 				>
-					<Link
-						to='hero'
+					<RouterLink
+						to='/'
+						onClick={() => {
+							scroll.scrollToTop();
+						}}
 						className='logo'
-						smooth={true}
-						duration={500}
 					>
 						<h2>John Dinh</h2>
 						<img src={logo} alt="John Dinh's Signiture" />
-					</Link>
+					</RouterLink>
 					<ul>
 						<li>
 							<Link
@@ -184,6 +185,9 @@ const Navbar = ({ mediaType, mobileMenu, setScrollY, scrollY }) => {
 							>
 								PORTFOLIO
 							</Link>
+						</li>
+						<li>
+							<RouterLink to='/login'>LOGIN</RouterLink>
 						</li>
 						<li>
 							<Link

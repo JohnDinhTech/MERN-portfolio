@@ -2,7 +2,7 @@ import React from "react";
 import "./mobileMenuButton.styles.css";
 import { connect } from "react-redux";
 import { toggleMobileMenu } from "../../../actions";
-import { DARK_BLUE, WHITE, BRAND_BLUE } from "../../../constants/colors";
+import { WHITE, BRAND_BLUE } from "../../../constants/colors";
 const MobileMenuButton = ({ toggleMobileMenu, menuState }) => {
 	return (
 		<div

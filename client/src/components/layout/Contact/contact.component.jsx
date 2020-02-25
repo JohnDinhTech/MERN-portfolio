@@ -46,13 +46,14 @@ const Contact = ({
 					padding: smallTablet ? "1rem 0" : "13.3rem 12.2rem",
 				}}
 			>
-				<form
+				<div
 					style={{
 						display: "flex",
 						flexDirection: desktop ? "column" : "row",
 						justifyContent: "space-around",
 						alignContent: "center",
 					}}
+					className='form'
 				>
 					<div
 						className='contact-info'
@@ -165,7 +166,7 @@ const Contact = ({
 							}}
 						/>
 					</div>
-				</form>
+				</div>
 			</div>
 		</section>
 	);

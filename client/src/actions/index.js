@@ -13,5 +13,5 @@ export const loadImage = () => (dispatch) => {
 	dispatch({ type: LOADING_IMAGE });
 	setTimeout(() => {
 		dispatch({ type: LOAD_IMAGE });
-	}, 5000);
+	}, 1000);
 };

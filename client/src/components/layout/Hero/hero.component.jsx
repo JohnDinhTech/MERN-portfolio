@@ -6,8 +6,7 @@ import {
 	WHITE,
 	LIGHT_GREEN,
 } from "../../../constants/colors";
-import * as Scroll from "react-scroll";
-import { Link, animateScroll as scroll } from "react-scroll";
+import { Link } from "react-scroll";
 import heroImage from "../../../images/me.jpg";
 import Particles from "react-particles-js";
 import Button from "../../utils/Button/button.component";

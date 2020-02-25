@@ -1,14 +1,7 @@
 import React from "react";
-import {
-	CarouselProvider,
-	Slider,
-	Slide,
-	ButtonBack,
-	ButtonNext,
-} from "pure-react-carousel";
+import { CarouselProvider, Slider, Slide } from "pure-react-carousel";
 import Card from "../Card/card.component";
 import "pure-react-carousel/dist/react-carousel.es.css";
-// import "./skillsSlider.styles.css";
 
 import designIcon from "../../../images/icons/design.png";
 import developmentIcon from "../../../images/icons/development.png";

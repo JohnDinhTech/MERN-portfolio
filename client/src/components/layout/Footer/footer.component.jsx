@@ -12,6 +12,7 @@ const Footer = ({
 	tablet,
 	desktop,
 	infinity,
+	style,
 }) => {
 	return (
 		<footer
@@ -24,6 +25,7 @@ const Footer = ({
 				flexDirection: "column",
 				justifyContent: "center",
 				alignItems: smallTablet ? "center" : null,
+				...style,
 			}}
 			className='footer'
 		>
