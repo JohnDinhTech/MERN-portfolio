@@ -1,0 +1,13 @@
+.contact-info label {
+	display: flex;
+	flex-direction: column;
+	color: white;
+}
+
+.contact-info label input {
+	margin-top: 1rem;
+}
+
+.contact-info label:not(:last-of-type) {
+	margin-bottom: 5rem;
+}

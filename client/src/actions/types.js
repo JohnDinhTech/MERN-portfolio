@@ -1,0 +1,4 @@
+export const TOGGLE_MOBILE_MENU = "TOGGLE_MOBILE_MENU";
+export const LOAD_IMAGE = "LOAD_IMAGE";
+export const LOADING_IMAGE = "LOADING_IMAGE";
+export const SET_SCROLL_Y = "SET_SCROLL_Y";

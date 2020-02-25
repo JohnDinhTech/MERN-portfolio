@@ -1,0 +1,21 @@
+.footer ul {
+	list-style: none;
+	padding: 0;
+}
+
+.footer ul li:not(:last-of-type) {
+	margin-bottom: 1rem;
+}
+
+.footer ul li a:visited,
+.footer ul li a {
+	color: #f1f3ed;
+}
+
+.footer ul li a {
+	font-size: 1.6rem;
+}
+
+.footer ul li a:hover {
+	color: #11d0d8;
+}

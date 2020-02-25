@@ -1,0 +1,21 @@
+.card {
+	height: 30.7rem;
+	width: 24.1rem;
+	border-radius: 1rem;
+	padding: 1.4rem 1.7rem;
+	text-align: center;
+	box-shadow: 0 0.3rem 0.8rem rgba(0, 0, 0, 3.5);
+}
+.card h1 {
+	font-size: 2rem;
+	margin-top: 0;
+	margin-bottom: 1rem;
+}
+
+.card .text {
+	font-size: 1.4rem;
+	line-height: 2.9rem;
+	background-color: #213239;
+	padding: 1.5rem 0.6rem;
+	border-radius: 1rem;
+}

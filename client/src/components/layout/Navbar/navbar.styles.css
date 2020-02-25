@@ -1,0 +1,140 @@
+.navbar {
+	display: flex;
+	justify-content: space-between;
+	height: 10rem;
+	align-items: center;
+	position: fixed;
+	left: 0;
+	right: 0;
+	z-index: 1;
+	animation: 0.8s ease-in-out fadeInFromTop forwards;
+	top: -6rem;
+	opacity: 0;
+	transition: background-color 1s ease;
+}
+
+.navbar-with-background {
+	background-color: rgba(17, 209, 216, 0.938);
+}
+
+@keyframes fadeInFromTop {
+	100% {
+		top: 0;
+		opacity: 1;
+	}
+}
+
+.navbar ul {
+	display: flex;
+	padding: 0;
+	list-style: none;
+	align-items: center;
+}
+
+.navbar ul li {
+	margin-left: 6rem;
+	transition: 0.4s all ease-in;
+}
+
+.navbar ul li a {
+	color: #f1f3ed;
+}
+
+.navbar ul li:not(:last-child):hover {
+	text-shadow: 0 0.3rem 0.6rem rgba(0, 0, 0, 0.4);
+	transform: scale(1.2);
+}
+
+/***************
+      logo 
+***************/
+.logo {
+	transition: 0.5s transform ease;
+}
+
+.logo h2 {
+	display: none;
+}
+
+.logo:hover {
+	transform: scale(1.2) rotate(1deg);
+}
+
+/*****************
+    TABLET SIZE
+******************/
+
+.navbar-tablet,
+.navbar-tablet ul {
+	flex-direction: column;
+	justify-content: space-evenly;
+}
+
+.navbar-tablet {
+	justify-content: center;
+	height: 100vh;
+	width: 45vw;
+	transition: 0.5s margin linear;
+}
+
+.navbar-tablet-closed {
+	margin-left: -45vw;
+}
+
+.navbar-tablet ul li {
+	margin: 7.6rem 0;
+}
+
+.navbar-tablet ul li a {
+	font-size: 2.4rem;
+	font-family: "League Spartan";
+}
+
+.menu-background {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: -1;
+}
+
+/*****************
+    MOBILE SIZE
+******************/
+
+.navbar-mobile,
+.navbar-mobile ul {
+	flex-direction: column;
+	justify-content: space-evenly;
+}
+
+.navbar-mobile {
+	justify-content: center;
+	height: 100vh;
+	width: 100vw;
+	transition: 0.5s margin linear;
+	z-index: 3;
+}
+
+.navbar-mobile-closed {
+	margin-left: -100vw;
+}
+
+.navbar-mobile ul li {
+	margin: 7.6rem 0;
+}
+
+.navbar-mobile ul li a {
+	font-size: 2.4rem;
+	font-family: "League Spartan";
+}
+
+.menu-background {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: -1;
+}

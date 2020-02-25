@@ -1,0 +1,111 @@
+.about-me {
+	margin-top: -0.3rem;
+	position: relative;
+	overflow: hidden;
+	padding-bottom: 8.7rem;
+}
+
+.about-me h1 {
+	font-size: 4.7rem;
+	font-family: "League Spartan";
+	margin: 0;
+	color: #23373c;
+}
+
+.about-me-image {
+	display: block;
+	margin: 0 auto;
+	width: 45%;
+	transform: translateX(-50%);
+}
+
+.about-me-text {
+	position: absolute;
+	top: 0;
+	left: 40%;
+	right: 0;
+	width: 55%;
+	height: 24.5rem;
+	padding: 1.6rem 3.6rem;
+	box-shadow: -0.4rem 0.3rem 0.6rem rgba(0, 0, 0, 0.2);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
+
+.about-me-text p {
+	font-size: 1.6rem;
+	line-height: 2.9rem;
+	width: 80%;
+}
+
+.about-me .slides-container {
+	width: 80rem;
+}
+
+.the-process {
+	position: absolute;
+	left: 55%;
+	top: 32.5rem;
+	height: 30.7rem;
+}
+
+.the-process-title {
+	transform: translate(20%, -50%);
+	display: inline-block;
+	border-bottom: 3px solid #11d0d8;
+	padding: 0 5rem;
+}
+
+.about-me-desktop .slides-container {
+	width: 100rem;
+}
+
+.about-me-desktop {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	padding-bottom: 0;
+}
+
+.about-me-image-desktop {
+	height: 24.5rem;
+}
+
+.about-me-text-desktop {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	box-shadow: -0.4rem 0.3rem 0.6rem rgba(0, 0, 0, 0.2);
+}
+
+.about-me-text-desktop .about-me-text {
+	position: relative;
+	top: auto;
+	left: auto;
+	width: 100%;
+	box-shadow: none;
+}
+
+.the-process-desktop {
+	text-align: center;
+	height: 54.7rem;
+}
+
+.the-process-title-desktop {
+	padding-top: 7rem;
+	padding-bottom: 5rem;
+}
+
+.the-process-desktop .carousel {
+	transform: translateX(5%);
+}
+
+/* 
+*   SMALL-TABLET VIEW
+*/
+
+.about-me-desktop.small-tablet .carousel {
+	margin-left: 50%;
+	transform: translateX(-25%);
+}
