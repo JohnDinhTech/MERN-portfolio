@@ -1,0 +1,9 @@
+.alert {
+	width: 100vw;
+	text-align: center;
+	color: white;
+	height: 3rem;
+	background-color: indianred;
+	font-size: 1.8rem;
+	margin-bottom: 3rem;
+}

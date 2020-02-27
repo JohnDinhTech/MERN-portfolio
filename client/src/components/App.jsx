@@ -13,14 +13,15 @@ import "./App.css";
 import Routes from "./routing/Routes/routes.component";
 import setAuthToken from "../utils/setAuthToken";
 import { loadUser, fetchProjects } from "../actions";
+import Alert from "./utils/Alert/alert.component";
 import store from "../store";
 const App = () => {
 	useEffect(() => {
 		if (localStorage.token) {
 			setAuthToken(localStorage.token);
 			store.dispatch(loadUser());
-			store.dispatch(fetchProjects());
 		}
+		store.dispatch(fetchProjects());
 	}, []);
 	return (
 		<Router>
@@ -36,6 +37,8 @@ const App = () => {
 				<Portfolio />
 			</Route>
 			<Route exact path='/login'>
+				<Alert />
+
 				<Login />
 			</Route>
 			<Route component={Routes} />

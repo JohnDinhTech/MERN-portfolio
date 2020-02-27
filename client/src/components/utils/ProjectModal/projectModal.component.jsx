@@ -16,7 +16,6 @@ const ProjectModal = ({ data, id, deselectProject }) => {
 		return null;
 	}
 	const { title, image, description, style, date, github, link } = data;
-	console.log(data);
 	return (
 		<Fragment>
 			<div className='overlay-fixed'></div>

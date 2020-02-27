@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { DARK_BLUE, WHITE, BRAND_BLUE } from "../../../constants/colors";
 import InputBar from "../../utils/InputBar/inputBar.component";
 import ProjectCard from "../../utils/ProjectCard/projectCard.component";
@@ -25,6 +25,13 @@ const Portfolio = ({
 	projects,
 	selectedProject,
 }) => {
+	const [searchTerm, setSearchTerm] = useState("");
+
+	const filteredProjects = projects.filter((project) => {
+		let included = project.tags.find((tag) => tag.includes(searchTerm));
+		return included ? true : false;
+	});
+
 	return (
 		<section
 			className='portfolio container'
@@ -63,6 +70,8 @@ const Portfolio = ({
 						type='search'
 						placeholder='Example: JavaScript'
 						width='41.4rem'
+						value={searchTerm}
+						onChange={(e) => setSearchTerm(e.target.value)}
 					/>
 					<SpringGrid
 						component='div'
@@ -78,7 +87,7 @@ const Portfolio = ({
 							zIndex: "0",
 						}}
 					>
-						{projects
+						{filteredProjects
 							.slice(0, tablet ? 4 : 8)
 							.map(
 								({ title, description, image, _id }, index) => (
@@ -110,7 +119,7 @@ const Portfolio = ({
 						marginTop: "3.6rem",
 					}}
 				>
-					{projects
+					{filteredProjects
 						.slice(0, 2)
 						.map(({ title, description, image, _id }, index) => (
 							<li key={_id}>

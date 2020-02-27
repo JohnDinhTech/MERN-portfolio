@@ -7,6 +7,7 @@ import auth from "./auth";
 import navColors from "./navColors";
 import projects from "./projects";
 import selectedProject from "./selectedProject";
+import alerts from "./alerts";
 export default combineReducers({
 	mobileMenu,
 	heroImageLoaded,
@@ -15,6 +16,7 @@ export default combineReducers({
 	navColors,
 	projects,
 	selectedProject,
+	alerts,
 	browser: createResponsiveStateReducer({
 		smallMobile: 482,
 		mobile: 732,
