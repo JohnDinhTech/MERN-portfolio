@@ -21,11 +21,7 @@ const DashboardAdd = ({ uploadProject, updateProject, selectedProject }) => {
 
 	const onSubmit = async (e) => {
 		e.preventDefault();
-		if (selectedProject) {
-			updateProject(formData);
-		} else {
-			uploadProject(formData);
-		}
+		uploadProject(formData);
 	};
 	return (
 		<section
@@ -171,7 +167,7 @@ const DashboardAdd = ({ uploadProject, updateProject, selectedProject }) => {
 					}}
 					color={BRAND_BLUE}
 				>
-					{`${selectedProject ? "Edit" : "Add"} Project`}
+					Add Project
 				</Button>
 			</form>
 			<form

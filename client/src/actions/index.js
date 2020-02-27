@@ -110,8 +110,12 @@ export const uploadProject = (payload) => async (dispatch) => {
 		await axios.post("/api/projects", body, config);
 		dispatch(fetchProjects());
 		window.location.href = "/";
-	} catch (error) {
-		console.error(error.message);
+	} catch (err) {
+		console.error(err.message);
+		const errors = err.response.data.errors;
+		if (errors) {
+			errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
+		}
 	}
 };
 
@@ -128,8 +132,12 @@ export const updateProject = (payload) => async (dispatch) => {
 		await axios.put("/api/projects", body, config);
 		dispatch(fetchProjects());
 		window.location.href = "/";
-	} catch (error) {
-		console.error(error.message);
+	} catch (err) {
+		console.error(err.message);
+		const errors = err.response.data.errors;
+		if (errors) {
+			errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
+		}
 	}
 };
 
@@ -137,8 +145,12 @@ export const fetchProjects = () => async (dispatch) => {
 	try {
 		const allProjects = await axios.get("/api/projects");
 		dispatch({ type: FETCH_PROJECTS, payload: allProjects.data });
-	} catch (error) {
-		console.error(error.message);
+	} catch (err) {
+		console.error(err.message);
+		const errors = err.response.data.errors;
+		if (errors) {
+			errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
+		}
 	}
 };
 

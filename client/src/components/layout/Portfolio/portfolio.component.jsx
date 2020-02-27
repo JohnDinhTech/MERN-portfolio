@@ -88,7 +88,14 @@ const Portfolio = ({
 						}}
 					>
 						{filteredProjects
-							.slice(0, tablet ? 4 : 8)
+							.slice(
+								0,
+								window.location.pathname === "/portfolio"
+									? filteredProjects.length
+									: tablet
+									? 4
+									: 8
+							)
 							.map(
 								({ title, description, image, _id }, index) => (
 									<li key={index}>
@@ -120,7 +127,12 @@ const Portfolio = ({
 					}}
 				>
 					{filteredProjects
-						.slice(0, 2)
+						.slice(
+							0,
+							window.location.pathname === "/portfolio"
+								? filteredProjects.length
+								: 2
+						)
 						.map(({ title, description, image, _id }, index) => (
 							<li key={_id}>
 								<ProjectCard
@@ -133,14 +145,18 @@ const Portfolio = ({
 						))}
 				</SpringGrid>
 			)}
-
-			<Button
-				style={{
-					margin: "4rem auto",
-				}}
-				color={LIGHT_GREEN}
-				text='View All Work'
-			/>
+			{window.location.pathname !== "/portfolio" && (
+				<Button
+					style={{
+						margin: "4rem auto",
+						display: "inline-block",
+					}}
+					isLink={true}
+					href='/portfolio'
+					color={LIGHT_GREEN}
+					text='View All Work'
+				/>
+			)}
 		</section>
 	);
 };

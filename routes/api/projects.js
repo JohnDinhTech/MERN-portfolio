@@ -46,7 +46,7 @@ router.post(
 		auth,
 		check("title", "Please enter a title").notEmpty(),
 		check("description", "Please enter a description").notEmpty(),
-		check("image", "Please enter a valid image url").isURL(),
+		check("image", "Please enter a valid image url").notEmpty(),
 		check("casestudy", "Please enter a valid case study link").isURL(),
 	],
 	async (req, res) => {
@@ -70,7 +70,9 @@ router.post(
 			let project = await Project.find({ title });
 
 			if (project.length > 0) {
-				res.status(400).json({ err: "Project already exists" });
+				return res.status(400).json({
+					errors: [{ msg: "Title is already taken" }],
+				});
 			}
 
 			tags = tags.split(",").map((tag) => tag.trim());
@@ -150,11 +152,9 @@ router.put(
 
 			if (!project || project.length <= 0) {
 				res.status(404).json({
-					err: "Project not found",
+					errors: [{ msg: "Project not Found" }],
 				});
 			}
-
-			await project.save();
 
 			res.json(project);
 		} catch (error) {

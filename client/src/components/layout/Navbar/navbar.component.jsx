@@ -189,44 +189,46 @@ const Navbar = ({
 						<h2>John Dinh</h2>
 						<img src={logo} alt="John Dinh's Signiture" />
 					</RouterLink>
-					<ul>
-						<li>
-							<Link
-								to='about-me'
-								smooth={true}
-								duration={500}
-								offset={-98}
-							>
-								ABOUT
-							</Link>
-						</li>
-						<li>
-							<Link
-								to='portfolio'
-								smooth={true}
-								duration={500}
-								offset={-100}
-							>
-								PORTFOLIO
-							</Link>
-						</li>
-						<li>
-							<RouterLink to='/login'>LOGIN</RouterLink>
-						</li>
-						<li>
-							<Link
-								to='contact'
-								smooth={true}
-								duration={500}
-								offset={-98}
-							>
-								<Button
-									color={LIGHT_GREEN}
-									text='GET IN TOUCH'
-								/>
-							</Link>
-						</li>
-					</ul>
+					{window.location.pathname === "/" && (
+						<ul>
+							<li>
+								<Link
+									to='about-me'
+									smooth={true}
+									duration={500}
+									offset={-98}
+								>
+									ABOUT
+								</Link>
+							</li>
+							<li>
+								<Link
+									to='portfolio'
+									smooth={true}
+									duration={500}
+									offset={-100}
+								>
+									PORTFOLIO
+								</Link>
+							</li>
+							<li>
+								<RouterLink to='/login'>LOGIN</RouterLink>
+							</li>
+							<li>
+								<Link
+									to='contact'
+									smooth={true}
+									duration={500}
+									offset={-98}
+								>
+									<Button
+										color={LIGHT_GREEN}
+										text='GET IN TOUCH'
+									/>
+								</Link>
+							</li>
+						</ul>
+					)}
 				</nav>
 			);
 	}
