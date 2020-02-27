@@ -104,7 +104,7 @@ router.put(
 		auth,
 		check("title", "Please enter a title").notEmpty(),
 		check("description", "Please enter a description").notEmpty(),
-		check("image", "Please enter a valid image url").isURL(),
+		check("image", "Please enter a valid image url").notEmpty(),
 		check("casestudy", "Please enter a valid case study link").isURL(),
 	],
 	async (req, res) => {

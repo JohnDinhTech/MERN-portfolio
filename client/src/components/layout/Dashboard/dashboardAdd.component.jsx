@@ -174,6 +174,19 @@ const DashboardAdd = ({ uploadProject, updateProject, selectedProject }) => {
 					{`${selectedProject ? "Edit" : "Add"} Project`}
 				</Button>
 			</form>
+			<form
+				action='/upload'
+				method='POST'
+				encType='multipart/form-data'
+				style={{
+					maxWidth: "30%",
+					display: "flex",
+					flexDirection: "column",
+				}}
+			>
+				<InputBar type='file' name='image' />
+				<InputBar type='submit' />
+			</form>
 		</section>
 	);
 };
