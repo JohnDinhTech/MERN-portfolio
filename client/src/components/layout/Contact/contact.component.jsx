@@ -38,7 +38,7 @@ const Contact = ({
 			>
 				LET'S GET IN TOUCH
 			</h1>
-			<div
+			<form
 				className='form-container'
 				style={{
 					backgroundColor: smallTablet ? BRAND_BLUE : DARK_BLUE,
@@ -167,7 +167,7 @@ const Contact = ({
 						/>
 					</div>
 				</div>
-			</div>
+			</form>
 		</section>
 	);
 };

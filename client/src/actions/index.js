@@ -7,6 +7,8 @@ import {
 	USER_LOADED,
 	CHANGE_NAV_POSITION,
 	CHANGE_NAV_BACKGROUND,
+	UPLOAD_SUCCESS,
+	FETCH_PROJECTS,
 } from "./types";
 import setAuthToken from "../utils/setAuthToken";
 import axios from "axios";
@@ -84,5 +86,31 @@ export const changeNavColor = (type, payload) => (dispatch) => {
 			dispatch({
 				type,
 			});
+	}
+};
+
+export const uploadProject = (payload) => async (dispatch) => {
+	const config = {
+		headers: {
+			"Content-Type": "application/json",
+		},
+	};
+
+	const body = JSON.stringify(payload);
+
+	try {
+		await axios.post("/api/projects", body, config);
+		dispatch(fetchProjects());
+	} catch (error) {
+		console.error(error.message);
+	}
+};
+
+export const fetchProjects = () => async (dispatch) => {
+	try {
+		const allProjects = await axios.get("/api/projects");
+		dispatch({ type: FETCH_PROJECTS, payload: allProjects.data });
+	} catch (error) {
+		console.error(error.message);
 	}
 };

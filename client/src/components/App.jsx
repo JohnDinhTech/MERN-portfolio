@@ -13,13 +13,14 @@ import { BRAND_BLUE } from "../constants/colors";
 import "./App.css";
 import Routes from "./routing/Routes/routes.component";
 import setAuthToken from "../utils/setAuthToken";
-import { loadUser } from "../actions";
+import { loadUser, fetchProjects } from "../actions";
 import store from "../store";
 const App = () => {
 	useEffect(() => {
 		if (localStorage.token) {
 			setAuthToken(localStorage.token);
 			store.dispatch(loadUser());
+			store.dispatch(fetchProjects());
 		}
 	}, []);
 	return (
