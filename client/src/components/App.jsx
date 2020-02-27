@@ -8,7 +8,6 @@ import Footer from "./layout/Footer/footer.component";
 import Preloader from "./layout/PreLoader/preLoader.component";
 import Login from "./auth/Login.component";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import { BRAND_BLUE } from "../constants/colors";
 
 import "./App.css";
 import Routes from "./routing/Routes/routes.component";

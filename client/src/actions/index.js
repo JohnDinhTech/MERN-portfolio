@@ -7,7 +7,6 @@ import {
 	USER_LOADED,
 	CHANGE_NAV_POSITION,
 	CHANGE_NAV_BACKGROUND,
-	UPLOAD_SUCCESS,
 	FETCH_PROJECTS,
 } from "./types";
 import setAuthToken from "../utils/setAuthToken";
@@ -80,12 +79,15 @@ export const changeNavColor = (type, payload) => (dispatch) => {
 				type,
 				payload,
 			});
+			break;
 		case CHANGE_NAV_BACKGROUND:
 			dispatch({ type, payload });
+			break;
 		default:
 			dispatch({
 				type,
 			});
+			break;
 	}
 };
 

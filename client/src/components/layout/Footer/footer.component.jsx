@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { DARK_BLUE, WHITE, BRAND_BLUE } from "../../../constants/colors";
+import { WHITE } from "../../../constants/colors";
 import logo from "../../../images/signiture.png";
 import { connect } from "react-redux";
 import { changeNavColor } from "../../../actions";

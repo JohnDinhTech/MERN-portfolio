@@ -2,54 +2,17 @@ import React, { Fragment } from "react";
 import { DARK_BLUE, WHITE, BRAND_BLUE } from "../../../constants/colors";
 import InputBar from "../../utils/InputBar/inputBar.component";
 import ProjectCard from "../../utils/ProjectCard/projectCard.component";
-import testImage from "../../../images/website.png";
 import { SpringGrid } from "react-stonecutter";
 import { LIGHT_GREEN } from "../../../constants/colors";
 import Button from "../../utils/Button/button.component";
 import { connect } from "react-redux";
 
-const projectData = [
-	{
-		title: "Mache",
-		text: "Ipsum has been the industry's...",
-		image: testImage,
-	},
-	{
-		title: "Mache",
-		text: "Ipsum has been the industry's...",
-		image: testImage,
-	},
-	{
-		title: "Mache",
-		text: "Ipsum has been the industry's...",
-		image: testImage,
-	},
-	{
-		title: "Mache",
-		text: "Ipsum has been the industry's...",
-		image: testImage,
-	},
-	{
-		title: "Mache",
-		text: "Ipsum has been the industry's...",
-		image: testImage,
-	},
-	{
-		title: "Mache",
-		text: "Ipsum has been the industry's...",
-		image: testImage,
-	},
-	{
-		title: "Mache",
-		text: "Ipsum has been the industry's...",
-		image: testImage,
-	},
-	{
-		title: "Mache",
-		text: "Ipsum has been the industry's...",
-		image: testImage,
-	},
-];
+const truncateString = (str, num = 25) => {
+	if (str.length <= num) {
+		return str;
+	}
+	return str.slice(0, num) + "...";
+};
 
 const Portfolio = ({
 	smallMobile,
@@ -58,6 +21,7 @@ const Portfolio = ({
 	tablet,
 	desktop,
 	infinity,
+	projects,
 }) => {
 	return (
 		<section
@@ -111,13 +75,13 @@ const Portfolio = ({
 							zIndex: "0",
 						}}
 					>
-						{projectData
+						{projects
 							.slice(0, tablet ? 4 : 8)
-							.map(({ title, text, image }, index) => (
+							.map(({ title, description, image }, index) => (
 								<li key={index}>
 									<ProjectCard
 										title={title}
-										text={text}
+										text={truncateString(description)}
 										image={image}
 									/>
 								</li>
@@ -140,13 +104,13 @@ const Portfolio = ({
 						marginTop: "3.6rem",
 					}}
 				>
-					{projectData
+					{projects
 						.slice(0, 2)
-						.map(({ title, text, image }, index) => (
-							<li key={index}>
+						.map(({ title, description, image, _id }, index) => (
+							<li key={_id}>
 								<ProjectCard
 									title={title}
-									text={text}
+									text={truncateString(description)}
 									image={image}
 								/>
 							</li>
@@ -165,6 +129,9 @@ const Portfolio = ({
 	);
 };
 
-const mapPropsToState = ({ browser }) => ({ ...browser.lessThan });
+const mapPropsToState = ({ browser, projects }) => ({
+	...browser.lessThan,
+	projects,
+});
 
 export default connect(mapPropsToState)(Portfolio);
