@@ -3,29 +3,57 @@ import { WHITE, DARK_BLUE, BRAND_BLUE } from "../../../constants/colors";
 import InputBar from "../../utils/InputBar/inputBar.component";
 import Button from "../../utils/Button/button.component";
 import { connect } from "react-redux";
-import { uploadProject, updateProject } from "../../../actions";
+import { updateProject, deleteProject } from "../../../actions";
 
-const DashboardAdd = ({ uploadProject, updateProject, selectedProject }) => {
+const tagsToString = (tags) => {
+	let str = "";
+	for (let i = 0; i < tags.length; i++) {
+		str += tags[i] + (i === tags.length - 1 ? "" : ", ");
+	}
+	return str.trim();
+};
+
+const formatDate = (date) => {
+	let d = new Date(date),
+		month = "" + (d.getMonth() + 1),
+		day = "" + d.getDate(),
+		year = d.getFullYear();
+
+	if (month.length < 2) month = "0" + month;
+	if (day.length < 2) day = "0" + day;
+
+	return [year, month, day].join("-");
+};
+
+const DashboardEdit = ({ updateProject, selectedProject, deleteProject }) => {
+	const {
+		title,
+		description,
+		casestudy,
+		image,
+		github,
+		link,
+		tags,
+		date,
+		_id,
+	} = selectedProject;
 	const [formData, setFormData] = useState({
-		title: "",
-		description: "",
-		image: "",
-		github: "",
-		link: "",
-		casestudy: "",
-		tags: "",
-		date: "",
+		_id,
+		title,
+		description,
+		casestudy,
+		image,
+		github,
+		link,
+		tags: tagsToString(tags),
+		date: formatDate(date),
 	});
 	const onChange = (e) =>
 		setFormData({ ...formData, [e.target.name]: e.target.value });
 
 	const onSubmit = async (e) => {
 		e.preventDefault();
-		if (selectedProject) {
-			updateProject(formData);
-		} else {
-			uploadProject(formData);
-		}
+		updateProject(formData);
 	};
 	return (
 		<section
@@ -45,6 +73,10 @@ const DashboardAdd = ({ uploadProject, updateProject, selectedProject }) => {
 			>
 				{`${selectedProject ? "Edit" : "Add"} A Project`}
 			</h1>
+			<Button onClick={() => deleteProject(_id)} color='red'>
+				Delete
+			</Button>
+
 			<form
 				onSubmit={onSubmit}
 				className='form-container'
@@ -181,6 +213,6 @@ const DashboardAdd = ({ uploadProject, updateProject, selectedProject }) => {
 const mapStateToProps = ({ selectedProject }) => ({ selectedProject });
 
 export default connect(mapStateToProps, {
-	uploadProject,
+	deleteProject,
 	updateProject,
-})(DashboardAdd);
+})(DashboardEdit);

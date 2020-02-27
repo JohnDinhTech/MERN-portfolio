@@ -8,6 +8,7 @@ const InputBar = ({
 	required,
 	width,
 	onChange,
+	value,
 }) => {
 	return (
 		<input
@@ -25,6 +26,7 @@ const InputBar = ({
 			placeholder={placeholder}
 			name={name}
 			required={required}
+			value={value}
 		/>
 	);
 };

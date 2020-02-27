@@ -32,6 +32,9 @@ const App = () => {
 				<Portfolio />
 				<Contact />
 			</Route>
+			<Route exact path='/portfolio'>
+				<Portfolio />
+			</Route>
 			<Route exact path='/login'>
 				<Login />
 			</Route>

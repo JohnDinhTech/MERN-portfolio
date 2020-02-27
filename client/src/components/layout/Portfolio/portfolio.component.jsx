@@ -5,6 +5,7 @@ import ProjectCard from "../../utils/ProjectCard/projectCard.component";
 import { SpringGrid } from "react-stonecutter";
 import { LIGHT_GREEN } from "../../../constants/colors";
 import Button from "../../utils/Button/button.component";
+import ProjectModal from "../../utils/ProjectModal/projectModal.component";
 import { connect } from "react-redux";
 
 const truncateString = (str, num = 25) => {
@@ -22,6 +23,7 @@ const Portfolio = ({
 	desktop,
 	infinity,
 	projects,
+	selectedProject,
 }) => {
 	return (
 		<section
@@ -34,6 +36,7 @@ const Portfolio = ({
 				paddingTop: "3rem",
 			}}
 		>
+			<ProjectModal data={selectedProject} />
 			<h1
 				style={{
 					fontSize: mobile ? "4.6rem" : "5.7rem",
@@ -77,15 +80,18 @@ const Portfolio = ({
 					>
 						{projects
 							.slice(0, tablet ? 4 : 8)
-							.map(({ title, description, image }, index) => (
-								<li key={index}>
-									<ProjectCard
-										title={title}
-										text={truncateString(description)}
-										image={image}
-									/>
-								</li>
-							))}
+							.map(
+								({ title, description, image, _id }, index) => (
+									<li key={index}>
+										<ProjectCard
+											id={_id}
+											title={title}
+											text={truncateString(description)}
+											image={image}
+										/>
+									</li>
+								)
+							)}
 					</SpringGrid>
 				</Fragment>
 			)}
@@ -109,6 +115,7 @@ const Portfolio = ({
 						.map(({ title, description, image, _id }, index) => (
 							<li key={_id}>
 								<ProjectCard
+									id={_id}
 									title={title}
 									text={truncateString(description)}
 									image={image}
@@ -129,9 +136,10 @@ const Portfolio = ({
 	);
 };
 
-const mapPropsToState = ({ browser, projects }) => ({
+const mapPropsToState = ({ browser, projects, selectedProject }) => ({
 	...browser.lessThan,
 	projects,
+	selectedProject,
 });
 
 export default connect(mapPropsToState)(Portfolio);

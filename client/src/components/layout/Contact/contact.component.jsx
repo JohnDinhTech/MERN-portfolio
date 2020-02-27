@@ -98,7 +98,7 @@ const Contact = ({
 								style={{
 									color: WHITE,
 									textAlign: "center",
-									marginTop: "8rem",
+									marginTop: "9.3rem",
 									transform: "translateX(-3rem)",
 								}}
 							>
@@ -110,6 +110,7 @@ const Contact = ({
 											paddingLeft: "4rem",
 											paddingRight: "4rem",
 										}}
+										isLink={true}
 										color={BRAND_BLUE}
 										text='HIRE ME'
 									/>

@@ -9,8 +9,7 @@ import { connect } from "react-redux";
 import MobileMenuButton from "../../utils/MobileMenuButton/mobileMenuButton";
 import { particlesConfig } from "../../../particlesConfig";
 import { Particles } from "react-particles-js";
-import { setScrollY, changeNavColor } from "../../../actions";
-import { CHANGE_NAV_BACKGROUND } from "../../../actions/types";
+import { setScrollY, changeNavColor, deselectProject } from "../../../actions";
 
 const Navbar = ({
 	mediaType,
@@ -20,6 +19,7 @@ const Navbar = ({
 	style,
 	changeNavColor,
 	navColors,
+	deselectProject,
 }) => {
 	useEffect(() => {
 		window.addEventListener("scroll", () => {
@@ -57,6 +57,7 @@ const Navbar = ({
 							onClick={() => {
 								scroll.scrollToTop();
 								changeNavColor(DARK_BLUE);
+								deselectProject();
 							}}
 							className='logo'
 						>
@@ -124,6 +125,7 @@ const Navbar = ({
 							onClick={() => {
 								scroll.scrollToTop();
 								changeNavColor(DARK_BLUE);
+								deselectProject();
 							}}
 							className='logo'
 						>
@@ -180,6 +182,7 @@ const Navbar = ({
 						onClick={() => {
 							scroll.scrollToTop();
 							changeNavColor(DARK_BLUE);
+							deselectProject();
 						}}
 						className='logo'
 					>
@@ -239,4 +242,5 @@ const mapStateToProps = ({ browser, mobileMenu, scrollY, navColors }) => ({
 export default connect(mapStateToProps, {
 	setScrollY,
 	changeNavColor,
+	deselectProject,
 })(Navbar);

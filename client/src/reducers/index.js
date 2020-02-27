@@ -6,6 +6,7 @@ import scrollY from "./scrollY";
 import auth from "./auth";
 import navColors from "./navColors";
 import projects from "./projects";
+import selectedProject from "./selectedProject";
 export default combineReducers({
 	mobileMenu,
 	heroImageLoaded,
@@ -13,6 +14,7 @@ export default combineReducers({
 	auth,
 	navColors,
 	projects,
+	selectedProject,
 	browser: createResponsiveStateReducer({
 		smallMobile: 482,
 		mobile: 732,

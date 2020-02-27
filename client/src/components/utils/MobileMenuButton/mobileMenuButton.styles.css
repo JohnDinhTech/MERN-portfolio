@@ -14,7 +14,6 @@
 
 .mobile-menu-button:hover {
 	box-shadow: 0 0.4rem 0.6rem rgba(0, 0, 0, 0.5);
-	/* transform: rotate(180deg); */
 }
 
 .mobile-menu-button .cross .line {

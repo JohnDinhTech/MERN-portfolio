@@ -8,6 +8,8 @@ import {
 	CHANGE_NAV_POSITION,
 	CHANGE_NAV_BACKGROUND,
 	FETCH_PROJECTS,
+	SELECT_PROJECT,
+	DESELECT_PROJECT,
 } from "./types";
 import setAuthToken from "../utils/setAuthToken";
 import axios from "axios";
@@ -103,6 +105,25 @@ export const uploadProject = (payload) => async (dispatch) => {
 	try {
 		await axios.post("/api/projects", body, config);
 		dispatch(fetchProjects());
+		window.location.href = "/";
+	} catch (error) {
+		console.error(error.message);
+	}
+};
+
+export const updateProject = (payload) => async (dispatch) => {
+	const config = {
+		headers: {
+			"Content-Type": "application/json",
+		},
+	};
+
+	const body = JSON.stringify(payload);
+
+	try {
+		await axios.put("/api/projects", body, config);
+		dispatch(fetchProjects());
+		window.location.href = "/";
 	} catch (error) {
 		console.error(error.message);
 	}
@@ -112,6 +133,30 @@ export const fetchProjects = () => async (dispatch) => {
 	try {
 		const allProjects = await axios.get("/api/projects");
 		dispatch({ type: FETCH_PROJECTS, payload: allProjects.data });
+	} catch (error) {
+		console.error(error.message);
+	}
+};
+
+export const selectProject = (id) => async (dispatch) => {
+	try {
+		const res = await axios.get(`/api/projects/${id}`);
+		dispatch({
+			type: SELECT_PROJECT,
+			payload: res.data,
+		});
+	} catch (error) {
+		console.error(error.message);
+	}
+};
+
+export const deselectProject = () => ({ type: DESELECT_PROJECT });
+
+export const deleteProject = (id) => async (dispatch) => {
+	try {
+		const res = await axios.delete(`/api/projects/${id}`);
+		dispatch(fetchProjects());
+		window.location.href = "/";
 	} catch (error) {
 		console.error(error.message);
 	}
