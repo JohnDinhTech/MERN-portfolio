@@ -14,6 +14,7 @@ import Routes from "./routing/Routes/routes.component";
 import setAuthToken from "../utils/setAuthToken";
 import { loadUser, fetchProjects } from "../actions";
 import Alert from "./utils/Alert/alert.component";
+import Resume from "./layout/Resume/resume.component";
 import store from "../store";
 const App = () => {
 	useEffect(() => {
@@ -35,6 +36,9 @@ const App = () => {
 			</Route>
 			<Route exact path='/portfolio'>
 				<Portfolio />
+			</Route>
+			<Route exact path='/resume'>
+				<Resume />
 			</Route>
 			<Route exact path='/login'>
 				<Alert />
