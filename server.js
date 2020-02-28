@@ -17,9 +17,11 @@ app.get("/", (req, res) => {
 const runAsyncServer = async () => {
 	try {
 		const { gfs, upload } = await connectGridFs();
+		// Upload Image
 		app.post("/upload", upload.single("image"), (req, res) => {
 			res.redirect("/");
 		});
+		// Get Image by Id
 		app.get("/image/:filename", async (req, res) => {
 			const { filename } = req.params;
 			try {
@@ -49,6 +51,7 @@ runAsyncServer();
 
 app.use("/api/auth", require("./routes/api/auth"));
 app.use("/api/projects", require("./routes/api/projects"));
+app.use("/api/message", require("./routes/api/message"));
 
 app.listen(PORT, () => {
 	console.log(`Server has started on port ${PORT}`);
