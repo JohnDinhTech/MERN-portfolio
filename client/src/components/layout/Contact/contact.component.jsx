@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import InputBar from "../../utils/InputBar/inputBar.component";
 import {
 	DARK_BLUE,
@@ -9,6 +9,8 @@ import {
 import "./contact.styles.css";
 import Button from "../../utils/Button/button.component";
 import { connect } from "react-redux";
+import Checkmark from "../../utils/Checkmark/checkmark.component";
+import { sendMessage } from "../../../actions";
 
 const Contact = ({
 	smallMobile,
@@ -17,7 +19,18 @@ const Contact = ({
 	tablet,
 	desktop,
 	infinity,
+	sendMessage,
 }) => {
+	const initialFormData = { fullName: "", from: "", number: "", message: "" };
+	const [formData, setFormData] = useState(initialFormData);
+
+	const onChange = (e) =>
+		setFormData({ ...formData, [e.target.name]: e.target.value });
+
+	const onSubmit = async (e) => {
+		e.preventDefault();
+		sendMessage(formData);
+	};
 	return (
 		<section
 			className='contact'
@@ -25,8 +38,10 @@ const Contact = ({
 				padding: smallTablet ? "0 5%" : "0 14% 15rem 14%",
 				backgroundColor: smallTablet ? BRAND_BLUE : WHITE,
 				height: smallTablet ? "100rem" : "auto",
+				position: "relative",
 			}}
 		>
+			<Checkmark />
 			<h1
 				style={{
 					color: smallTablet ? WHITE : DARK_BLUE,
@@ -38,7 +53,8 @@ const Contact = ({
 			>
 				LET'S GET IN TOUCH
 			</h1>
-			<div
+			<form
+				onSubmit={onSubmit}
 				className='form-container'
 				style={{
 					backgroundColor: smallTablet ? BRAND_BLUE : DARK_BLUE,
@@ -66,8 +82,10 @@ const Contact = ({
 							<InputBar
 								placeholder='John Doe'
 								type='text'
-								name='name'
+								name='fullName'
 								required={true}
+								value={formData.fullName}
+								onChange={onChange}
 							/>
 						</label>
 						<label>
@@ -75,8 +93,10 @@ const Contact = ({
 							<InputBar
 								placeholder='johndoe@gmail.com'
 								type='email'
-								name='email'
+								name='from'
 								required={true}
+								value={formData.from}
+								onChange={onChange}
 							/>
 						</label>
 						<label
@@ -88,8 +108,10 @@ const Contact = ({
 							<InputBar
 								placeholder='(555)-555-5555'
 								type='tel'
-								name='phone'
+								name='number'
 								required={true}
+								value={formData.number}
+								onChange={onChange}
 							/>
 						</label>
 						{!desktop && (
@@ -98,7 +120,7 @@ const Contact = ({
 								style={{
 									color: WHITE,
 									textAlign: "center",
-									marginTop: "8rem",
+									marginTop: "9.3rem",
 									transform: "translateX(-3rem)",
 								}}
 							>
@@ -110,6 +132,8 @@ const Contact = ({
 											paddingLeft: "4rem",
 											paddingRight: "4rem",
 										}}
+										isLink={true}
+										href='/image/0d035e242abc72fa61450685a3f10f4a.PDF'
 										color={BRAND_BLUE}
 										text='HIRE ME'
 									/>
@@ -153,11 +177,16 @@ const Contact = ({
 								padding: "2rem",
 								color: DARK_BLUE,
 							}}
+							name='message'
+							value={formData.message}
+							required={true}
 							placeholder='Type something...'
+							onChange={onChange}
 						></textarea>
 						<Button
 							color={LIGHT_GREEN}
 							text='SEND MESSAGE'
+							type='submit'
 							style={{
 								margin: "0 auto",
 								marginTop: desktop ? "3rem" : "7.4rem",
@@ -167,11 +196,13 @@ const Contact = ({
 						/>
 					</div>
 				</div>
-			</div>
+			</form>
 		</section>
 	);
 };
 
 const mapStateToProps = ({ browser }) => ({ ...browser.lessThan });
 
-export default connect(mapStateToProps)(Contact);
+export default connect(mapStateToProps, {
+	sendMessage,
+})(Contact);

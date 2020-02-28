@@ -1,55 +1,19 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { DARK_BLUE, WHITE, BRAND_BLUE } from "../../../constants/colors";
 import InputBar from "../../utils/InputBar/inputBar.component";
 import ProjectCard from "../../utils/ProjectCard/projectCard.component";
-import testImage from "../../../images/website.png";
 import { SpringGrid } from "react-stonecutter";
 import { LIGHT_GREEN } from "../../../constants/colors";
 import Button from "../../utils/Button/button.component";
+import ProjectModal from "../../utils/ProjectModal/projectModal.component";
 import { connect } from "react-redux";
 
-const projectData = [
-	{
-		title: "Mache",
-		text: "Ipsum has been the industry's...",
-		image: testImage,
-	},
-	{
-		title: "Mache",
-		text: "Ipsum has been the industry's...",
-		image: testImage,
-	},
-	{
-		title: "Mache",
-		text: "Ipsum has been the industry's...",
-		image: testImage,
-	},
-	{
-		title: "Mache",
-		text: "Ipsum has been the industry's...",
-		image: testImage,
-	},
-	{
-		title: "Mache",
-		text: "Ipsum has been the industry's...",
-		image: testImage,
-	},
-	{
-		title: "Mache",
-		text: "Ipsum has been the industry's...",
-		image: testImage,
-	},
-	{
-		title: "Mache",
-		text: "Ipsum has been the industry's...",
-		image: testImage,
-	},
-	{
-		title: "Mache",
-		text: "Ipsum has been the industry's...",
-		image: testImage,
-	},
-];
+const truncateString = (str, num = 25) => {
+	if (str.length <= num) {
+		return str;
+	}
+	return str.slice(0, num) + "...";
+};
 
 const Portfolio = ({
 	smallMobile,
@@ -58,7 +22,16 @@ const Portfolio = ({
 	tablet,
 	desktop,
 	infinity,
+	projects,
+	selectedProject,
 }) => {
+	const [searchTerm, setSearchTerm] = useState("");
+
+	const filteredProjects = projects.filter((project) => {
+		let included = project.tags.find((tag) => tag.includes(searchTerm));
+		return included ? true : false;
+	});
+
 	return (
 		<section
 			className='portfolio container'
@@ -70,6 +43,7 @@ const Portfolio = ({
 				paddingTop: "3rem",
 			}}
 		>
+			<ProjectModal data={selectedProject} />
 			<h1
 				style={{
 					fontSize: mobile ? "4.6rem" : "5.7rem",
@@ -96,6 +70,8 @@ const Portfolio = ({
 						type='search'
 						placeholder='Example: JavaScript'
 						width='41.4rem'
+						value={searchTerm}
+						onChange={(e) => setSearchTerm(e.target.value)}
 					/>
 					<SpringGrid
 						component='div'
@@ -111,17 +87,27 @@ const Portfolio = ({
 							zIndex: "0",
 						}}
 					>
-						{projectData
-							.slice(0, tablet ? 4 : 8)
-							.map(({ title, text, image }, index) => (
-								<li key={index}>
-									<ProjectCard
-										title={title}
-										text={text}
-										image={image}
-									/>
-								</li>
-							))}
+						{filteredProjects
+							.slice(
+								0,
+								window.location.pathname === "/portfolio"
+									? filteredProjects.length
+									: tablet
+									? 4
+									: 8
+							)
+							.map(
+								({ title, description, image, _id }, index) => (
+									<li key={index}>
+										<ProjectCard
+											id={_id}
+											title={title}
+											text={truncateString(description)}
+											image={image}
+										/>
+									</li>
+								)
+							)}
 					</SpringGrid>
 				</Fragment>
 			)}
@@ -140,31 +126,45 @@ const Portfolio = ({
 						marginTop: "3.6rem",
 					}}
 				>
-					{projectData
-						.slice(0, 2)
-						.map(({ title, text, image }, index) => (
-							<li key={index}>
+					{filteredProjects
+						.slice(
+							0,
+							window.location.pathname === "/portfolio"
+								? filteredProjects.length
+								: 2
+						)
+						.map(({ title, description, image, _id }, index) => (
+							<li key={_id}>
 								<ProjectCard
+									id={_id}
 									title={title}
-									text={text}
+									text={truncateString(description)}
 									image={image}
 								/>
 							</li>
 						))}
 				</SpringGrid>
 			)}
-
-			<Button
-				style={{
-					margin: "4rem auto",
-				}}
-				color={LIGHT_GREEN}
-				text='View All Work'
-			/>
+			{window.location.pathname !== "/portfolio" && (
+				<Button
+					style={{
+						margin: "4rem auto",
+						display: "inline-block",
+					}}
+					isLink={true}
+					href='/portfolio'
+					color={LIGHT_GREEN}
+					text='View All Work'
+				/>
+			)}
 		</section>
 	);
 };
 
-const mapPropsToState = ({ browser }) => ({ ...browser.lessThan });
+const mapPropsToState = ({ browser, projects, selectedProject }) => ({
+	...browser.lessThan,
+	projects,
+	selectedProject,
+});
 
 export default connect(mapPropsToState)(Portfolio);

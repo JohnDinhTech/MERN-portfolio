@@ -9,9 +9,18 @@ import { connect } from "react-redux";
 import MobileMenuButton from "../../utils/MobileMenuButton/mobileMenuButton";
 import { particlesConfig } from "../../../particlesConfig";
 import { Particles } from "react-particles-js";
-import { setScrollY } from "../../../actions";
+import { setScrollY, changeNavColor, deselectProject } from "../../../actions";
 
-const Navbar = ({ mediaType, mobileMenu, setScrollY, scrollY, style }) => {
+const Navbar = ({
+	mediaType,
+	mobileMenu,
+	setScrollY,
+	scrollY,
+	style,
+	changeNavColor,
+	navColors,
+	deselectProject,
+}) => {
 	useEffect(() => {
 		window.addEventListener("scroll", () => {
 			setScrollY(window.pageYOffset);
@@ -25,7 +34,11 @@ const Navbar = ({ mediaType, mobileMenu, setScrollY, scrollY, style }) => {
 			return (
 				<Fragment>
 					<nav
-						style={{ backgroundColor: DARK_BLUE, ...style }}
+						style={{
+							backgroundColor: DARK_BLUE,
+							position: navColors.navPosition,
+							...style,
+						}}
 						className={`navbar navbar-mobile ${
 							mobileMenu
 								? "navbar-mobile-open"
@@ -43,6 +56,8 @@ const Navbar = ({ mediaType, mobileMenu, setScrollY, scrollY, style }) => {
 							to='/'
 							onClick={() => {
 								scroll.scrollToTop();
+								changeNavColor(DARK_BLUE);
+								deselectProject();
 							}}
 							className='logo'
 						>
@@ -87,7 +102,11 @@ const Navbar = ({ mediaType, mobileMenu, setScrollY, scrollY, style }) => {
 			return (
 				<Fragment>
 					<nav
-						style={{ backgroundColor: DARK_BLUE, ...style }}
+						style={{
+							backgroundColor: DARK_BLUE,
+							position: navColors.navPosition,
+							...style,
+						}}
 						className={`navbar navbar-tablet ${
 							mobileMenu
 								? "navbar-tablet-open"
@@ -105,6 +124,8 @@ const Navbar = ({ mediaType, mobileMenu, setScrollY, scrollY, style }) => {
 							to='/'
 							onClick={() => {
 								scroll.scrollToTop();
+								changeNavColor(DARK_BLUE);
+								deselectProject();
 							}}
 							className='logo'
 						>
@@ -134,7 +155,7 @@ const Navbar = ({ mediaType, mobileMenu, setScrollY, scrollY, style }) => {
 							<li>
 								<Link to='contact' smooth={true} duration={500}>
 									<Button
-										color={BRAND_BLUE}
+										color={DARK_BLUE}
 										text='GET IN TOUCH'
 										fontWeight='800'
 									/>
@@ -148,10 +169,11 @@ const Navbar = ({ mediaType, mobileMenu, setScrollY, scrollY, style }) => {
 		default:
 			return (
 				<nav
-					className={`navbar container ${
-						scrollY === 0 ? "" : "navbar-with-background"
-					}`}
+					className='navbar container'
 					style={{
+						backgroundColor:
+							scrollY === 0 ? navColors.navColor : BRAND_BLUE,
+						position: navColors.navPosition,
 						...style,
 					}}
 				>
@@ -159,61 +181,68 @@ const Navbar = ({ mediaType, mobileMenu, setScrollY, scrollY, style }) => {
 						to='/'
 						onClick={() => {
 							scroll.scrollToTop();
+							changeNavColor(DARK_BLUE);
+							deselectProject();
 						}}
 						className='logo'
 					>
 						<h2>John Dinh</h2>
 						<img src={logo} alt="John Dinh's Signiture" />
 					</RouterLink>
-					<ul>
-						<li>
-							<Link
-								to='about-me'
-								smooth={true}
-								duration={500}
-								offset={-98}
-							>
-								ABOUT
-							</Link>
-						</li>
-						<li>
-							<Link
-								to='portfolio'
-								smooth={true}
-								duration={500}
-								offset={-100}
-							>
-								PORTFOLIO
-							</Link>
-						</li>
-						<li>
-							<RouterLink to='/login'>LOGIN</RouterLink>
-						</li>
-						<li>
-							<Link
-								to='contact'
-								smooth={true}
-								duration={500}
-								offset={-98}
-							>
-								<Button
-									color={LIGHT_GREEN}
-									text='GET IN TOUCH'
-								/>
-							</Link>
-						</li>
-					</ul>
+					{window.location.pathname === "/" && (
+						<ul>
+							<li>
+								<Link
+									to='about-me'
+									smooth={true}
+									duration={500}
+									offset={-98}
+								>
+									ABOUT
+								</Link>
+							</li>
+							<li>
+								<Link
+									to='portfolio'
+									smooth={true}
+									duration={500}
+									offset={-100}
+								>
+									PORTFOLIO
+								</Link>
+							</li>
+							<li>
+								<RouterLink to='/login'>LOGIN</RouterLink>
+							</li>
+							<li>
+								<Link
+									to='contact'
+									smooth={true}
+									duration={500}
+									offset={-98}
+								>
+									<Button
+										color={LIGHT_GREEN}
+										text='GET IN TOUCH'
+									/>
+								</Link>
+							</li>
+						</ul>
+					)}
 				</nav>
 			);
 	}
 };
 
-const mapStateToProps = ({ browser, mobileMenu, scrollY }) => ({
+const mapStateToProps = ({ browser, mobileMenu, scrollY, navColors }) => ({
 	...browser,
 	mobileMenu,
 	scrollY,
+	navColors,
 });
 
 export default connect(mapStateToProps, {
 	setScrollY,
+	changeNavColor,
+	deselectProject,
 })(Navbar);

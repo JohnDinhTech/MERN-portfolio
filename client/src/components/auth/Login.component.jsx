@@ -1,9 +1,45 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import Button from "../utils/Button/button.component";
 import InputBar from "../utils/InputBar/inputBar.component";
 import { BRAND_BLUE, WHITE, DARK_BLUE } from "../../constants/colors";
-const Login = ({ mobile, desktop }) => {
+import { Redirect } from "react-router-dom";
+import { login, changeNavColor } from "../../actions";
+import { CHANGE_NAV_POSITION } from "../../actions/types";
+const Login = ({
+	mobile,
+	desktop,
+	login,
+	isAuthenticated,
+	changeNavColor,
+	token,
+}) => {
+	useEffect(() => {
+		changeNavColor(BRAND_BLUE);
+	}, []);
+	const [formData, setaFormData] = useState({
+		email: "",
+		password: "",
+	});
+
+	const { email, password } = formData;
+
+	const onChange = (e) => {
+		setaFormData({ ...formData, [e.target.name]: e.target.value });
+	};
+
+	const handleLogin = async (e) => {
+		e.preventDefault();
+		login(email, password);
+	};
+
+	if (isAuthenticated) {
+		// changeNavColor(DARK_BLUE);
+		changeNavColor(CHANGE_NAV_POSITION, { position: "relative" });
+		localStorage.setItem("token", token);
+		return <Redirect to='/dashboard' />;
+	}
+
 	return (
 		<div
 			style={{
@@ -24,7 +60,8 @@ const Login = ({ mobile, desktop }) => {
 				Dev Login
 			</h1>
 
-			<div
+			<form
+				onSubmit={handleLogin}
 				className='contact-info'
 				style={{
 					width: desktop ? "30%" : "25%",
@@ -37,6 +74,7 @@ const Login = ({ mobile, desktop }) => {
 						type='email'
 						name='email'
 						required={true}
+						onChange={onChange}
 					/>
 				</label>
 				<label>
@@ -46,6 +84,7 @@ const Login = ({ mobile, desktop }) => {
 						name='password'
 						required={true}
 						placeholder='Password'
+						onChange={onChange}
 					/>
 				</label>
 				<Button
@@ -57,11 +96,17 @@ const Login = ({ mobile, desktop }) => {
 						display: "block",
 					}}
 				/>
-			</div>
+			</form>
 		</div>
 	);
 };
 
-const mapStateToProps = ({ browser }) => ({ ...browser.lessThan });
+const mapStateToProps = ({ browser, auth }) => ({
+	...browser.lessThan,
+	...auth,
+});
 
-export default connect(mapStateToProps)(Login);
+export default connect(mapStateToProps, {
+	login,
+	changeNavColor,
+})(Login);

@@ -1,6 +1,15 @@
 import React from "react";
 
-const InputBar = ({ style, type, placeholder, name, required, width }) => {
+const InputBar = ({
+	style,
+	type,
+	placeholder,
+	name,
+	required,
+	width,
+	onChange,
+	value,
+}) => {
 	return (
 		<input
 			style={{
@@ -12,10 +21,12 @@ const InputBar = ({ style, type, placeholder, name, required, width }) => {
 				fontSize: "2rem",
 				outline: "none",
 			}}
+			onChange={onChange}
 			type={type}
 			placeholder={placeholder}
 			name={name}
 			required={required}
+			value={value}
 		/>
 	);
 };

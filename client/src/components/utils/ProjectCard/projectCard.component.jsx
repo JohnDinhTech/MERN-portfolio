@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { WHITE, DARK_BLUE } from "../../../constants/colors";
 import "./projectCard.styles.css";
-const ProjectCard = ({ image, title, text }) => {
+import { selectProject } from "../../../actions";
+import { connect } from "react-redux";
+const ProjectCard = ({ image, title, text, id, selectProject }) => {
+	const handleClick = () => {
+		selectProject(id);
+	};
 	return (
 		<div
 			className='project-card-container'
+			id={id}
+			onClick={handleClick}
 			style={{
 				height: "16.8rem",
 				width: "20.2rem",
@@ -55,4 +62,6 @@ const ProjectCard = ({ image, title, text }) => {
 	);
 };
 
-export default ProjectCard;
+export default connect(null, {
+	selectProject,
+})(ProjectCard);
