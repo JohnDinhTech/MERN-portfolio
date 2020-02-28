@@ -133,7 +133,7 @@ const Contact = ({
 											paddingRight: "4rem",
 										}}
 										isLink={true}
-										href='/image/0d035e242abc72fa61450685a3f10f4a.PDF'
+										href='/resume'
 										color={BRAND_BLUE}
 										text='HIRE ME'
 									/>
