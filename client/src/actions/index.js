@@ -12,6 +12,9 @@ import {
 	DESELECT_PROJECT,
 	SET_ALERT,
 	REMOVE_ALERT,
+	INIT_MESSAGE_MODAL,
+	STOP_MESSAGE_MODAL,
+	CLOSE_MESSAGE_MODAL,
 } from "./types";
 import { v4 as uuid } from "uuid";
 
@@ -186,4 +189,33 @@ export const setAlert = (msg, type, timeout = 5000) => (dispatch) => {
 	});
 
 	setTimeout(() => dispatch({ type: REMOVE_ALERT, payload: id }), timeout);
+};
+
+export const sendMessage = (formData) => async (dispatch) => {
+	const config = {
+		headers: {
+			"Content-Type": "application/json",
+		},
+	};
+
+	const body = JSON.stringify(formData);
+
+	try {
+		dispatch({
+			type: INIT_MESSAGE_MODAL,
+		});
+		const res = await axios.post("/api/message", body, config);
+		dispatch({
+			type: STOP_MESSAGE_MODAL,
+			payload: res.data.msg,
+		});
+
+		setTimeout(() => {
+			dispatch({
+				type: CLOSE_MESSAGE_MODAL,
+			});
+		}, 500);
+	} catch (error) {
+		console.error(error.message);
+	}
 };

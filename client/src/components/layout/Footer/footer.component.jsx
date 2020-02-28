@@ -77,18 +77,18 @@ const Footer = ({ smallTablet, style, navColors, changeNavColor }) => {
 					<a
 						rel='noopener noreferrer'
 						target='_blank'
-						href='https://twitter.com/johndinhtech'
+						href='https://www.linkedin.com/in/johndinhtech/'
 					>
-						Twitter
+						LinkedIn
 					</a>
 				</li>
 				<li>
 					<a
 						rel='noopener noreferrer'
 						target='_blank'
-						href='https://www.instagram.com/johndinhtech/'
+						href='https://twitter.com/johndinhtech'
 					>
-						Instagram
+						Twitter
 					</a>
 				</li>
 			</ul>
