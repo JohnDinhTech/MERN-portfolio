@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+    database:
+        image: mongo
+        container_name: "mongodb"
+        ports:
+            - "27017-27019"
+    server:
+        env_file: .env
+        build: ./backend/
+        container_name: "express-server"
+        ports:
+            - "5000:5000"
+    client:
+        build: ./frontend/
+        container_name: "reactjs-client"
+        ports:
+            - "80:80"

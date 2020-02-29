@@ -39,7 +39,7 @@ export const loadUser = () => async (dispatch) => {
 	}
 
 	try {
-		const res = await axios.get("/api/auth");
+		const res = await axios.get("server/api/auth");
 
 		dispatch({
 			type: USER_LOADED,
@@ -61,7 +61,7 @@ export const login = (email, password) => async (dispatch) => {
 	const body = JSON.stringify({ email, password });
 
 	try {
-		const res = await axios.post("/api/auth", body, config);
+		const res = await axios.post("server/api/auth", body, config);
 		dispatch({
 			type: LOGIN_SUCCESS,
 			payload: res.data,
@@ -110,7 +110,7 @@ export const uploadProject = (payload) => async (dispatch) => {
 	const body = JSON.stringify(payload);
 
 	try {
-		await axios.post("/api/projects", body, config);
+		await axios.post("server/api/projects", body, config);
 		dispatch(fetchProjects());
 		window.location.href = "/";
 	} catch (err) {
@@ -132,7 +132,7 @@ export const updateProject = (payload) => async (dispatch) => {
 	const body = JSON.stringify(payload);
 
 	try {
-		await axios.put("/api/projects", body, config);
+		await axios.put("server/api/projects", body, config);
 		dispatch(fetchProjects());
 		window.location.href = "/";
 	} catch (err) {
@@ -146,7 +146,7 @@ export const updateProject = (payload) => async (dispatch) => {
 
 export const fetchProjects = () => async (dispatch) => {
 	try {
-		const allProjects = await axios.get("/api/projects");
+		const allProjects = await axios.get("server/api/projects");
 		dispatch({ type: FETCH_PROJECTS, payload: allProjects.data });
 	} catch (err) {
 		console.error(err.message);
@@ -204,7 +204,7 @@ export const sendMessage = (formData) => async (dispatch) => {
 		dispatch({
 			type: INIT_MESSAGE_MODAL,
 		});
-		const res = await axios.post("/api/message", body, config);
+		const res = await axios.post("server/api/message", body, config);
 		dispatch({
 			type: STOP_MESSAGE_MODAL,
 			payload: res.data.msg,
