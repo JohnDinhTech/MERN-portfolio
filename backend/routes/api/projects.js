@@ -11,7 +11,10 @@ const { check, validationResult } = require("express-validator");
 router.get("/", async (req, res) => {
 	try {
 		const projects = await Project.find();
-		res.json(projects);
+		if (!projects || projects.length === 0) {
+			res.status(404).json([]);
+		}
+		res.json();
 	} catch (error) {
 		console.error(error.message);
 		res.status(500).send("Server Error");

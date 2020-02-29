@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
-require("dotenv").config();
 const GridFsStorage = require("multer-gridfs-storage");
 const multer = require("multer");
 const crypto = require("crypto");
 const path = require("path");
 
 const uri = process.env.MONGO_URI;
+console.log(uri);
 if (!uri) {
 	console.log("Please config your .env file");
 }
