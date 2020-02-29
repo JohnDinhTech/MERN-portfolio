@@ -15,16 +15,7 @@ const truncateString = (str, num = 25) => {
 	return str.slice(0, num) + "...";
 };
 
-const Portfolio = ({
-	smallMobile,
-	mobile,
-	smallTablet,
-	tablet,
-	desktop,
-	infinity,
-	projects,
-	selectedProject,
-}) => {
+const Portfolio = ({ mobile, tablet, projects, selectedProject }) => {
 	const [searchTerm, setSearchTerm] = useState("");
 
 	const filteredProjects = projects.filter((project) => {
